@@ -1330,11 +1330,11 @@ async function geminiRequest({contents, system, json = false, schema, temperatur
   if (Settings.get('fast', true) && /2\.5-flash/.test(model)) gen.thinkingConfig = {thinkingBudget: 0};
   const body = {contents, generationConfig: gen};
   if (system) body.systemInstruction = {parts: [{text: system}]};
-  const url = `${API_BASE}/models/${encodeURIComponent(model)}:${stream ? 'streamGenerateContent?alt=sse&' : 'generateContent?'}key=${encodeURIComponent(key)}`;
+  const url = `${API_BASE}/models/${encodeURIComponent(model)}:${stream ? 'streamGenerateContent?alt=sse' : 'generateContent'}`;
   let attempt = 0;
   for (;;) {
     let res;
-    try { res = await fetch(url, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body), signal}); }
+    try { res = await fetch(url, {method: 'POST', headers: {'Content-Type': 'application/json', 'x-goog-api-key': key}, body: JSON.stringify(body), signal}); }
     catch (e) {
       if (e.name === 'AbortError') throw e;
       if (attempt < 2) { attempt++; await sleep(1200 * attempt); continue; }
@@ -2103,7 +2103,7 @@ Object.assign(AI, {
   async image(label, q) {
     if (!hasKey()) throw new AIError('توليد الصور يحتاج مفتاح Gemini.', 'nokey');
     const key = Settings.get('apiKey', '');
-    let res; try { res = await fetch(`${API_BASE}/models/gemini-2.5-flash-image:generateContent?key=${encodeURIComponent(key)}`, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({contents: [{parts: [{text: `Clean, labeled educational illustration of ${q} (${label}) for a medical/science student, white background, textbook style.`}]}], generationConfig: {responseModalities: ['IMAGE', 'TEXT']}})}); }
+    let res; try { res = await fetch(`${API_BASE}/models/gemini-2.5-flash-image:generateContent`, {method: 'POST', headers: {'Content-Type': 'application/json', 'x-goog-api-key': key}, body: JSON.stringify({contents: [{parts: [{text: `Clean, labeled educational illustration of ${q} (${label}) for a medical/science student, white background, textbook style.`}]}], generationConfig: {responseModalities: ['IMAGE', 'TEXT']}})}); }
     catch { throw new AIError('تعذّر الاتصال لتوليد الصورة.', 'network'); }
     if (!res.ok) { let b = null; try { b = await res.json(); } catch {} const e = mapApiError(res.status, b, 'gemini-2.5-flash-image'); if (['quota', 'model', 'perm'].includes(e.code)) e.message = 'مفتاحك لا يدعم توليد الصور حالياً (يحتاج غالباً خطة مدفوعة). جرّب «ارسم مخطط مبسّط».'; throw e; }
     const j = await res.json(); const p = ((j.candidates && j.candidates[0] && j.candidates[0].content && j.candidates[0].content.parts) || []).find(p => p.inlineData || p.inline_data);
@@ -4078,7 +4078,7 @@ VIEWS.progress = async function () {
    ===================================================================== */
 const FALLBACK_MODELS = [{id: 'gemini-2.5-flash', label: 'Gemini 2.5 Flash (موصى به)'}, {id: 'gemini-2.5-flash-lite', label: 'Gemini 2.5 Flash-Lite (أسرع وحصة أكبر)'}, {id: 'gemini-2.5-pro', label: 'Gemini 2.5 Pro (أذكى، حصة أقل)'}, {id: 'gemini-2.0-flash', label: 'Gemini 2.0 Flash'}];
 async function fetchModels(key) {
-  let res; try { res = await fetch(`${API_BASE}/models?pageSize=1000&key=${encodeURIComponent(key)}`); } catch { throw new AIError('تعذّر الاتصال بـ Google. تحقق من الإنترنت.', 'network'); }
+  let res; try { res = await fetch(`${API_BASE}/models?pageSize=1000`, {headers: {'x-goog-api-key': key}}); } catch { throw new AIError('تعذّر الاتصال بـ Google. تحقق من الإنترنت.', 'network'); }
   if (!res.ok) { let b = null; try { b = await res.json(); } catch {} throw mapApiError(res.status, b, ''); }
   const j = await res.json();
   const list = (j.models || []).filter(m => /gemini/i.test(m.name) && (m.supportedGenerationMethods || []).includes('generateContent') && !/embedding|tts|image|live|audio|aqa|robotics|computer-use|learnlm/i.test(m.name))
@@ -4093,7 +4093,7 @@ function openSettings() {
   const vsorted = voices.slice().sort((a, b) => (b.lang.startsWith('ar')) - (a.lang.startsWith('ar')));
   openModal({title: 'الإعدادات', icon: 'settings', wide: true, body: `<div class="stack" style="gap:18px">
     <div class="card flat pad-sm stack" style="gap:12px"><div class="row"><b>🔑 مفتاح Google Gemini</b><span class="spacer"></span><a class="small" href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">احصل على مفتاح مجاني ↗</a></div>
-      <div class="row nowrap"><input class="input ltr" id="st-key" type="password" placeholder="AIza…" value="${esc(key)}" autocomplete="off" spellcheck="false"><button class="icon-btn" id="st-eye" aria-label="إظهار المفتاح">${icon('eye')}</button></div>
+      <div class="row nowrap"><input class="input ltr" id="st-key" type="password" placeholder="الصق المفتاح هنا" value="${esc(key)}" autocomplete="off" spellcheck="false"><button class="icon-btn" id="st-eye" aria-label="إظهار المفتاح">${icon('eye')}</button></div>
       <div class="row"><button class="btn btn-sm" id="st-test">${icon('check')} اختبار المفتاح وتحديث النماذج</button><span class="small" id="st-msg"></span></div>
       <label class="field">النموذج<select class="select ltr" id="st-model">${modelOptions(modelName())}</select><span class="hint">الافتراضي: ${DEFAULT_MODEL}. القائمة تُجلب من حسابك عبر ListModels.</span></label>
       <label class="row small" style="gap:10px"><span class="switch"><input type="checkbox" id="st-fast" ${Settings.get('fast', true) ? 'checked' : ''}><span></span></span> وضع الرد السريع (يعطّل «التفكير» في نماذج 2.5 Flash لتوفير الوقت والحصة)</label></div>
@@ -4134,10 +4134,10 @@ function showOnboarding(force = false, after) {
   if (onboardingOpen) return; onboardingOpen = true;
   openModal({title: 'أهلاً بك في ذاكِر 👋', dismissable: true, body: `<div style="text-align:center;margin-bottom:6px"><div style="width:72px;height:72px;margin:0 auto 10px">${logo()}</div><p style="margin:0" class="muted">ذاكِر يستخدم ذكاء <b>Google Gemini</b> عشان يشرح محاضرتك، ويختبرك، ويسمّع لك. تحتاج مفتاح <b>مجاني</b> مرة وحدة بس:</p></div>
     <ol class="steps-ol"><li><div>افتح <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener"><b>Google AI Studio ↗</b></a> وسجّل دخولك بحساب Google.</div></li><li><div>اضغط <b>«Create API key»</b> (إنشاء مفتاح) وانسخه.</div></li><li><div>ألصقه هنا واضغط <b>«حفظ والبدء»</b> ✨</div></li></ol>
-    <div class="row nowrap"><input class="input ltr" id="ob-key" type="password" placeholder="AIza…" autocomplete="off" spellcheck="false"><button class="icon-btn" id="ob-eye" aria-label="إظهار">${icon('eye')}</button></div><div class="small" id="ob-msg" style="margin-top:8px;min-height:1.4em"></div>
+    <div class="row nowrap"><input class="input ltr" id="ob-key" type="password" placeholder="الصق المفتاح هنا" autocomplete="off" spellcheck="false"><button class="icon-btn" id="ob-eye" aria-label="إظهار">${icon('eye')}</button></div><div class="small" id="ob-msg" style="margin-top:8px;min-height:1.4em"></div>
     <div class="tiny faint">🔒 المفتاح يُحفظ في متصفحك فقط ويُرسل مباشرة إلى Google.</div>`,
     actions: [{label: 'حفظ والبدء', cls: 'btn-primary', keep: true, onClick: (bg, close) => {
-      const k = $('#ob-key', bg).value.trim(); const m = $('#ob-msg', bg); if (!/^[A-Za-z0-9_\-]{20,}$/.test(k)) { m.innerHTML = '<span style="color:var(--danger)">المفتاح غير مكتمل — يبدأ عادة بـ AIza</span>'; return false; }
+      const k = $('#ob-key', bg).value.trim(); const m = $('#ob-msg', bg); if (!/^[A-Za-z0-9_.\-]{20,}$/.test(k)) { m.innerHTML = '<span style="color:var(--danger)">المفتاح غير مكتمل — تأكد إنك نسخته كامل</span>'; return false; }
       m.innerHTML = '<span class="spin" style="width:14px;height:14px"></span> نتحقق من المفتاح…';
       fetchModels(k).then(list => { Settings.set('apiKey', k); Settings.set('onboarded', true); toast('تم تفعيل الذكاء الاصطناعي ✨ ' + arNum(list.length) + ' نموذج متاح', 'ok'); onboardingOpen = false; close(); renderChrome(); if (App.tab === 'home') renderHome(); after && after(); })
         .catch(e => { if (e.code === 'network') { Settings.set('apiKey', k); Settings.set('onboarded', true); toast('حفظنا المفتاح، لكن تعذّر التحقق منه الآن (الشبكة).', 'warn'); onboardingOpen = false; close(); renderChrome(); after && after(); } else m.innerHTML = `<span style="color:var(--danger)">${esc(e.message)}</span>`; });
