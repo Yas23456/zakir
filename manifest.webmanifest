@@ -1,0 +1,23 @@
+{
+  "name": "ذاكِر — ذاكر محاضرتك بذكاء",
+  "short_name": "ذاكِر",
+  "description": "ارفع محاضرتك ويشرحها لك الذكاء الاصطناعي، يختبرك، ويسمّع لك. © د. ياسر نضال رحّال",
+  "author": "د. ياسر نضال رحّال",
+  "developer": {"name": "د. ياسر نضال رحّال", "url": "https://www.instagram.com/ay3._9/"},
+  "lang": "ar",
+  "dir": "rtl",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f7f6fb",
+  "theme_color": "#6c5ce7",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"},
+    {"src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}
+  ]
+}
