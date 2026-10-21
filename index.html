@@ -1323,14 +1323,14 @@ let retryNotice = null;
 async function geminiRequest({contents, system, json = false, schema, temperature = 0.7, stream = false, onChunk, signal, maxTokens}) {
   const key = Settings.get('apiKey', '');
   if (!key) { showOnboarding(); throw new AIError('أضف مفتاح Gemini المجاني أولاً لتفعيل الذكاء الاصطناعي.', 'nokey'); }
-  const model = modelName();
+  let model = modelName(); let switched = 0;
   const gen = {temperature};
   if (maxTokens) gen.maxOutputTokens = maxTokens;
   if (json) { gen.responseMimeType = 'application/json'; if (schema) gen.responseSchema = schema; }
   if (Settings.get('fast', true) && /2\.5-flash/.test(model)) gen.thinkingConfig = {thinkingBudget: 0};
   const body = {contents, generationConfig: gen};
   if (system) body.systemInstruction = {parts: [{text: system}]};
-  const url = `${API_BASE}/models/${encodeURIComponent(model)}:${stream ? 'streamGenerateContent?alt=sse' : 'generateContent'}`;
+  let url = `${API_BASE}/models/${encodeURIComponent(model)}:${stream ? 'streamGenerateContent?alt=sse' : 'generateContent'}`;
   let attempt = 0;
   for (;;) {
     let res;
@@ -1346,6 +1346,13 @@ async function geminiRequest({contents, system, json = false, schema, temperatur
       if (res.status === 400 && gen.thinkingConfig && /thinking/i.test(msg)) { delete gen.thinkingConfig; continue; }
       if (res.status === 400 && schema && /schema|responseSchema/i.test(msg)) { delete gen.responseSchema; continue; }
       const err = mapApiError(res.status, b, model);
+      if (err.code === 'model' && switched < 3) {
+        switched++; const bad = [...new Set([...(Settings.get('badModels', []) || []), model])]; Settings.set('badModels', bad);
+        let next = null; try { const list = await fetchModels(key); next = pickBestModel(list, bad); } catch {}
+        if (next && next !== model) { model = next; Settings.set('model', next); delete gen.thinkingConfig; if (/2\.5-flash/.test(model) && Settings.get('fast', true)) gen.thinkingConfig = {thinkingBudget: 0};
+          url = `${API_BASE}/models/${encodeURIComponent(model)}:${stream ? 'streamGenerateContent?alt=sse' : 'generateContent'}`;
+          toast('بدّلنا تلقائياً إلى النموذج المتاح: ' + model, 'ok', 3500); continue; }
+      }
       if (err.retryable && attempt < 3) {
         attempt++; const d = Math.min(retryDelayMs(b) || 1500 * 2 ** attempt, 35000);
         toast(`${err.code === 'quota' ? 'الحصة مزدحمة' : 'الخادم مشغول'} — إعادة المحاولة تلقائياً بعد ${Math.round(d / 1000)} ثانية (${attempt}/3)`, 'warn', Math.min(d, 6000));
@@ -4084,9 +4091,17 @@ async function fetchModels(key) {
   const list = (j.models || []).filter(m => /gemini/i.test(m.name) && (m.supportedGenerationMethods || []).includes('generateContent') && !/embedding|tts|image|live|audio|aqa|robotics|computer-use|learnlm/i.test(m.name))
     .map(m => ({id: m.name.replace(/^models\//, ''), label: m.displayName || m.name.replace(/^models\//, '')}));
   list.sort((a, b) => (b.id === DEFAULT_MODEL) - (a.id === DEFAULT_MODEL) || (/latest|exp|preview/.test(a.id) - /latest|exp|preview/.test(b.id)) || b.id.localeCompare(a.id));
-  if (list.length) Settings.set('models', list);
+  if (list.length) { Settings.set('models', list); const bad = Settings.get('badModels', []); const cur = modelName(); if (!list.some(m => m.id === cur) || bad.includes(cur)) { const best = pickBestModel(list, [cur, ...bad]); if (best) Settings.set('model', best); } }
   return list;
 }
+function modelScore(id) {
+  const v = parseFloat((id.match(/gemini-(\d+(?:\.\d+)?)/) || [])[1] || '0');
+  let s = v * 100;
+  if (/flash/.test(id)) s += 50; if (/lite/.test(id)) s -= 30; if (/pro/.test(id)) s += 10;
+  if (/preview|exp/.test(id)) s -= 5; if (/latest/.test(id)) s -= 2; if (/\d{3,}$|-\d{2}-\d{2}/.test(id)) s -= 3;
+  return s;
+}
+function pickBestModel(list, exclude = []) { const c = list.filter(m => !exclude.includes(m.id)).sort((a, b) => modelScore(b.id) - modelScore(a.id)); return c.length ? c[0].id : null; }
 function modelOptions(cur) { const list = Settings.get('models', null) || FALLBACK_MODELS; const has = list.some(m => m.id === cur); return (has ? '' : `<option value="${esc(cur)}" selected>${esc(cur)}</option>`) + list.map(m => `<option value="${esc(m.id)}" ${m.id === cur ? 'selected' : ''}>${esc(m.label)}${m.label.includes(m.id) ? '' : ' · ' + esc(m.id)}</option>`).join(''); }
 function openSettings() {
   const key = Settings.get('apiKey', ''); const voices = TTS.supported() ? speechSynthesis.getVoices() : [];
