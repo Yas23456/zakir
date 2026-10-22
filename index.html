@@ -1466,7 +1466,7 @@ html,body{overflow-x:clip}
 /* =====================================================================
    ذاكِر — Zakir: Arabic-first AI study companion (single-file app)
    ===================================================================== */
-const APP_VERSION = '2.3.0';
+const APP_VERSION = '2.3.1';
 const DEFAULT_MODEL = 'gemini-3.8-flash'; // current-gen stable Flash (ai.google.dev, Oct 2026); auto-switches if a key lacks it
 const API_BASE = 'https://generativelanguage.googleapis.com/v1beta';
 const UPLOAD_BASE = 'https://generativelanguage.googleapis.com/upload/v1beta/files';
@@ -1844,20 +1844,43 @@ function thinkCfg(model) {
 }
 const hasFileData = contents => (contents || []).some(c => (c.parts || []).some(p => p.file_data || p.fileData));
 let retryNotice = null;
-async function geminiRequest({contents, system, json = false, schema, temperature = 0.7, stream = false, onChunk, signal, maxTokens}) {
+// --- temporary per-model overload memory (not a permanent "bad model" mark) ---
+const BUSY_MS = 10 * 60e3;
+function busyModels() { const m = Settings.get('busyModels', {}) || {}; const now = Date.now(); return Object.keys(m).filter(k => +m[k] > now); }
+function markBusy(model) { const m = {...(Settings.get('busyModels', {}) || {})}; const now = Date.now(); for (const k of Object.keys(m)) if (!(+m[k] > now)) delete m[k]; m[model] = now + BUSY_MS; Settings.set('busyModels', m); }
+const isOverload = e => e instanceof AIError && (e.code === 'server' || (e.code === 'quota' && e.retryable));
+const jitter = ms => Math.round(ms * (0.6 + Math.random() * 0.8));
+const knownModels = () => { const l = Settings.get('models', null); return Array.isArray(l) && l.length ? l : FALLBACK_MODELS; };
+async function geminiRequest({contents, system, json = false, schema, temperature = 0.7, stream = false, onChunk, signal, maxTokens, keepAlive = false}) {
   const key = Settings.get('apiKey', '');
   if (!key) { showOnboarding(); throw new AIError('أضف مفتاح Gemini المجاني أولاً لتفعيل الذكاء الاصطناعي.', 'nokey'); }
   let model = modelName(); let switched = 0;
+  // the preferred model is resting after an overload → start on the best available alternative (session-only, setting untouched)
+  if (busyModels().includes(model)) { const alt = pickBestModel(knownModels(), [model, ...unusableModels(), ...busyModels()]); if (alt) model = alt; }
+  // long document requests stream (with thought summaries) so bytes keep flowing — Safari drops idle connections after ~60 s
+  const sse = stream || keepAlive;
   const gen = {temperature};
   if (maxTokens) gen.maxOutputTokens = maxTokens;
   if (json) { gen.responseMimeType = 'application/json'; if (schema) gen.responseSchema = schema; }
-  const setThink = () => { delete gen.thinkingConfig; const t = Settings.get('noThink', []).includes(model) ? null : thinkCfg(model); if (t) gen.thinkingConfig = t; };
+  const setThink = () => { delete gen.thinkingConfig; const t = Settings.get('noThink', []).includes(model) ? null : thinkCfg(model); if (t) gen.thinkingConfig = keepAlive && !stream ? {...t, includeThoughts: true} : t; };
   setThink();
   const body = {contents, generationConfig: gen};
   if (system) body.systemInstruction = {parts: [{text: system}]};
-  const mkUrl = () => `${API_BASE}/models/${encodeURIComponent(model)}:${stream ? 'streamGenerateContent?alt=sse' : 'generateContent'}`;
+  const mkUrl = () => `${API_BASE}/models/${encodeURIComponent(model)}:${sse ? 'streamGenerateContent?alt=sse' : 'generateContent'}`;
   let url = mkUrl();
-  let attempt = 0;
+  let attempt = 0, busyTries = 0, bareTried = false; const tried = new Set();
+  // 503 / overloaded / per-minute 429 on THIS model: 1–2 quick jittered retries, then hop to the next best model (same file URIs, no re-upload)
+  const onBusy = async (err, b) => {
+    if (busyTries < 2) { busyTries++; await sleep(jitter(Math.min(retryDelayMs(b) || 900 * 2 ** (busyTries - 1), 6000))); return true; }
+    markBusy(model); tried.add(model);
+    let list = knownModels(); if (!Settings.get('models', null)) { try { list = await fetchModels(key); } catch {} }
+    const next = tried.size < 6 ? pickBestModel(list, [...tried, ...unusableModels(), ...busyModels()]) : null;
+    // last resort: a few model/config combos 503 persistently — one try on the preferred model without a thinking config
+    if (!next && !bareTried && gen.thinkingConfig) { bareTried = true; model = [...tried][0]; delete gen.thinkingConfig; busyTries = 2; url = mkUrl(); return true; }
+    if (!next) throw new AIError('جرّبنا كل نماذج Gemini المتاحة لمفتاحك، وكلها مزدحمة في هذي اللحظة.', 'overloaded', true);
+    model = next; busyTries = 0; setThink(); url = mkUrl();
+    toast('النموذج مزدحم — جربنا نموذج ثاني', 'warn', 3500); return true;
+  };
   for (;;) {
     let res;
     try { res = await fetch(url, {method: 'POST', headers: {'Content-Type': 'application/json', 'x-goog-api-key': key}, body: JSON.stringify(body), signal}); }
@@ -1883,6 +1906,7 @@ async function geminiRequest({contents, system, json = false, schema, temperatur
           const from = model; model = next; Settings.set('model', next); setThink(); url = mkUrl();
           toast(err.code === 'model' ? `النموذج ${from} غير متاح لمفتاحك — بدّلنا تلقائياً إلى ${model}` : `انتهت الحصة اليومية لـ ${from} — بدّلنا تلقائياً إلى ${model}`, 'ok', 4500); continue; }
       }
+      if (isOverload(err) && await onBusy(err, b)) continue;
       if (err.retryable && attempt < 3) {
         attempt++; const d = Math.min(retryDelayMs(b) || 1500 * 2 ** attempt, 35000);
         toast(`${err.code === 'quota' ? 'الحصة مزدحمة' : 'الخادم مشغول'} — إعادة المحاولة تلقائياً بعد ${Math.round(d / 1000)} ثانية (${attempt}/3)`, 'warn', Math.min(d, 6000));
@@ -1890,12 +1914,14 @@ async function geminiRequest({contents, system, json = false, schema, temperatur
       }
       throw err;
     }
-    if (!stream) { let data; try { data = await res.json(); } catch { if (attempt < 2) { attempt++; continue; } throw new AIError('وصل رد تالف من Gemini. أعد المحاولة.', 'parse', true); } return extractCandidateText(data); }
-    return await readSSE(res, onChunk, model);
+    if (!sse) { let data; try { data = await res.json(); } catch { if (attempt < 2) { attempt++; continue; } throw new AIError('وصل رد تالف من Gemini. أعد المحاولة.', 'parse', true); } return extractCandidateText(data); }
+    let emitted = false;
+    try { return await readSSE(res, stream ? (f, t) => { emitted = true; onChunk && onChunk(f, t); } : null, model, !stream); }
+    catch (e) { if (!emitted && isOverload(e) && await onBusy(e, null)) continue; throw e; }
   }
 }
 function unusableModels() { const q = Settings.get('quotaHit', {}) || {}; const today = dayKey(); return [...(Settings.get('badModels', []) || []), ...Object.keys(q).filter(k => q[k] === today)]; }
-async function readSSE(res, onChunk, model) {
+async function readSSE(res, onChunk, model, raw = false) {
   const reader = res.body.getReader(); const dec = new TextDecoder(); let buf = '', full = '', finish = null;
   const handle = line => {
     line = line.trim(); if (!line.startsWith('data:')) return;
@@ -1915,6 +1941,7 @@ async function readSSE(res, onChunk, model) {
   if (buf) handle(buf);
   if (!finish) throw new AIError(full ? 'انقطع الرد قبل اكتماله. أعد المحاولة.' : 'رجع رد فاضي من Gemini. أعد المحاولة.', 'cut', true);
   if (!full) throw finish !== 'STOP' ? finishErr(finish) : new AIError('رجع رد فاضي من Gemini. أعد المحاولة.', 'empty', true);
+  if (raw) { if (finish !== 'STOP' && finish !== 'MAX_TOKENS') throw finishErr(finish); return full; }
   if (finish === 'MAX_TOKENS') { full += '\n\n> ✂️ الرد طويل ووصل الحد الأقصى للطول — اطلب «أكمل» أو اسأل عن جزء محدد.'; onChunk && onChunk(full, ''); }
   else if (finish !== 'STOP') { full += '\n\n> ⚠️ ' + (FINISH_MSG[finish] || 'توقف الرد قبل اكتماله.'); onChunk && onChunk(full, ''); }
   return full;
@@ -1975,7 +2002,9 @@ async function aiJSON(lec, prompt, schema, validate, {temperature = 0.4, system}
   return withLecture(lec, prompt, async contents => {
     let lastErr = null;
     for (let i = 0; i < 2; i++) {
-      const txt = await geminiRequest({contents, system: system || systemPrompt(), json: true, schema, temperature});
+      const ka = hasFileData(contents); let txt;
+      try { txt = await geminiRequest({contents, system: system || systemPrompt(), json: true, schema, temperature, keepAlive: ka}); }
+      catch (e) { if (!(ka && e instanceof AIError && e.code === 'cut')) throw e; txt = await geminiRequest({contents, system: system || systemPrompt(), json: true, schema, temperature}); }
       const obj = parseJSONLoose(txt);
       if (obj && (!validate || validate(obj))) return obj;
       lastErr = new AIError('وصل رد غير مكتمل من الذكاء الاصطناعي. حاول مرة أخرى.', 'parse', true);
@@ -2413,7 +2442,7 @@ const GFiles = {
     if (!r.ok) throw mapApiError(r.status, r.json, '');
     let file = r.json && (r.json.file || r.json);
     if (!file || !file.uri) throw new AIError('رد غير متوقع من خدمة رفع الملفات. أعد المحاولة.', 'upload', true);
-    for (let i = 0; file.state === 'PROCESSING' && i < 90; i++) {
+    for (let i = 0; file.state === 'PROCESSING' && i < 200; i++) {
       await sleep(Math.min(800 + i * 300, 4000));
       try { const g = await fetch(`${API_BASE}/${file.name}`, {headers: {'x-goog-api-key': key}}); if (g.ok) file = await g.json(); } catch {}
     }
@@ -4144,12 +4173,19 @@ function skeleton(lines = 6, title = true) { return `<div class="card">${title ?
 function thinking(msg) { return `<div class="thinking"><span class="dots"><i></i><i></i><i></i></span>${esc(msg)}</div>`; }
 function errorCard(err, extra = '') {
   const code = err && err.code; const msg = (err && err.message) || 'حدث خطأ غير متوقع';
+  if (code === 'overloaded' || code === 'server') return `<div class="card fade-in busy-card" role="status"><div class="alert warn">${icon('hourglass')}<div style="flex:1"><b>خوادم Gemini مزدحمة شوي</b><div>${esc(code === 'overloaded' ? msg : 'خوادم Gemini تحت ضغط مؤقت الآن.')}</div>
+    <div class="small muted" style="margin-top:6px">${icon('lock')} هذا من جهة Google وليس من جهازك أو ملفك — محاضرتك محفوظة في مكتبتك، وما يحتاج ترفعها من جديد.</div>
+    <div class="row" style="margin-top:12px;align-items:center"><button class="btn btn-primary btn-sm" data-retry>${icon('refresh')} إعادة المحاولة الآن</button><span class="small muted" data-auto="30" aria-live="off" hidden>نعيد المحاولة تلقائياً بعد <b data-cd-n>${arNum(30)}</b> ثانية</span>${extra}</div></div></div></div>`;
   return `<div class="card fade-in"><div class="alert ${code === 'nokey' ? 'warn' : 'danger'}">${icon(code === 'nokey' ? 'key' : 'alert')}<div style="flex:1"><b>${code === 'nokey' ? 'نحتاج مفتاح Gemini' : 'ما قدرنا نكمل'}</b><div>${esc(msg)}</div>
     <div class="row" style="margin-top:12px">${code === 'nokey' ? `<button class="btn btn-primary btn-sm" data-onboard>${icon('key')} أضف المفتاح المجاني</button>` : `<button class="btn btn-sm" data-retry>${icon('refresh')} إعادة المحاولة</button>`}
     ${['key', 'model', 'quota', 'perm', 'region'].includes(code) ? `<button class="btn btn-sm btn-ghost" data-a="settings">${icon('settings')} الإعدادات</button>` : ''}${extra}</div></div></div></div>`;
 }
 function bindErrorCard(retry, root = main()) {
-  root && root.classList && root.classList.remove('cursor-blink'); const r = $('[data-retry]', root); r && r.addEventListener('click', retry);
+  root && root.classList && root.classList.remove('cursor-blink'); const r = $('[data-retry]', root);
+  let fired = false; const go1 = () => { if (fired) return; fired = true; clearInterval(tm); retry(); };
+  r && r.addEventListener('click', go1);
+  const au = $('[data-auto]', root); let tm = null;
+  if (au) { au.hidden = false; let n = +au.dataset.auto || 30; tm = setInterval(() => { if (!au.isConnected) return clearInterval(tm); if (document.hidden) return; n--; const b = $('[data-cd-n]', au); if (b) b.textContent = arNum(Math.max(n, 0)); if (n <= 0) go1(); }, 1000); }
   const o = $('[data-onboard]', root); o && o.addEventListener('click', () => showOnboarding(true, retry));
 }
 function makePainter(el, cursor = true) {
