@@ -2,7 +2,7 @@
    - navigation / index.html: network-first (always fresh after a deploy), cached copy when offline
    - same-origin static assets + CDN libraries/fonts: stale-while-revalidate
    - everything else (Gemini API, uploads, images search…) is NOT touched */
-const V = 'zakir-shell-v5';
+const V = 'zakir-shell-v6';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png', './icon.svg'];
 const CDN = /^https:\/\/(cdn\.jsdelivr\.net|cdnjs\.cloudflare\.com|unpkg\.com|fonts\.googleapis\.com|fonts\.gstatic\.com)\//;
 self.addEventListener('install', e => { e.waitUntil(caches.open(V).then(c => c.addAll(SHELL).catch(() => {})).then(() => self.skipWaiting())); });

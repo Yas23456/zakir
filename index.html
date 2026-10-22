@@ -42,7 +42,7 @@
   --text:#1d1b2c; --muted:#5f5c74; --faint:#6e6b84; --border:#e7e5ef;
   --primary:#6c5ce7; --primary-2:#7e70ec; --primary-soft:rgba(108,92,231,.09); --primary-tint:#f1effd; --on-primary:#fff;
   --accent:#2f9e7a; --accent-soft:rgba(47,158,122,.10);
-  --danger:#d64b62; --danger-soft:rgba(214,75,98,.09);
+  --danger:#c43a53; --danger-soft:rgba(214,75,98,.09);
   --warn:#b7791f; --warn-soft:rgba(183,121,31,.10);
   --info:#4a7fc1; --info-soft:rgba(74,127,193,.09);
   --c-structure:#7b8ff0; --c-function:#3fb59a; --c-disease:#e07a8b; --c-drug:#d8a046; --c-concept:#a08ad8;
@@ -1042,7 +1042,7 @@ button.subj-chip{cursor:pointer;margin-top:4px;min-height:28px}
 @media (max-width:1180px){.clock .ck-h{display:none}}
 @media (max-width:700px){.clock .ck-d{display:none}.clock{margin-inline-end:2px}}
 @media (max-width:360px){.clock{display:none}}
-@media (max-width:520px){#top-actions [data-a="palette"]{display:none}.bd-btn{width:54px;height:54px}}
+@media (max-width:520px){#top-actions [data-a="palette"]{display:none}.bd-btn{width:44px;height:44px}}
 /* stepper (SQ3R) */
 ol.stepper{border:0;border-radius:0;background:none;display:flex;gap:6px;list-style:none;padding:0;margin:0 0 16px;overflow-x:auto}
 ol.stepper li{flex:1;min-width:64px}
@@ -1123,7 +1123,7 @@ body.focus-mode #main{max-width:860px;padding-top:70px!important;padding-bottom:
 /* companion */
 #buddy-root{position:relative;z-index:75}
 .buddy{position:fixed;left:16px;bottom:22px;display:flex;align-items:flex-end;gap:2px;touch-action:none;user-select:none;-webkit-user-select:none}
-.bd-btn{width:64px;height:64px;padding:0;border:0;background:none;cursor:grab;border-radius:50%;filter:drop-shadow(0 8px 14px rgba(60,40,160,.28))}
+.bd-btn{width:48px;height:48px;padding:0;border:0;background:none;cursor:grab;border-radius:50%;filter:drop-shadow(0 8px 14px rgba(60,40,160,.28))}
 .bd-btn:active{cursor:grabbing}
 .bd-svg{width:100%;height:100%;overflow:visible}
 .bd-min{width:26px;height:26px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;font-size:.9rem;line-height:1;position:relative}
@@ -1148,7 +1148,7 @@ body.focus-mode #main{max-width:860px;padding-top:70px!important;padding-bottom:
 @keyframes bdTw{50%{transform:scale(.7) rotate(20deg);opacity:.7}}
 .b-think .bd-dots circle{animation:bdDot 1s infinite}.b-think .bd-dots circle:nth-child(2){animation-delay:.15s}.b-think .bd-dots circle:nth-child(3){animation-delay:.3s}
 @keyframes bdDot{50%{transform:translateY(-2px)}}
-.bd-bubble{position:absolute;bottom:72px;left:0;width:min(280px,80vw);padding:12px;border-radius:16px 16px 16px 4px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-lg);animation:fadeIn .3s both}
+.bd-bubble{position:absolute;bottom:4px;left:calc(100% + 4px);width:min(280px,80vw);padding:12px;border-radius:16px 16px 16px 4px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-lg);animation:fadeIn .3s both}
 #bd-panel{position:fixed;left:16px;bottom:96px;z-index:80;width:min(380px,calc(100vw - 24px));height:min(560px,calc(100dvh - 140px));display:flex;flex-direction:column;border-radius:22px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-lg);overflow:hidden;animation:fadeIn .25s both}
 @media (max-width:900px){#bd-panel{left:12px;right:12px;width:auto;bottom:calc(var(--bottomnav-h) + 12px + env(safe-area-inset-bottom));height:min(520px,calc(100dvh - var(--bottomnav-h) - 90px))}}
 .bdp-h{display:flex;align-items:center;gap:8px;padding:10px 10px 10px 14px;border-bottom:1px solid var(--border)}
@@ -1418,6 +1418,7 @@ body.cv-full #credits,body.cv-full #buddy-root,body.cv-full #bottomnav{display:n
 .cv-snip{text-align:start;border:1px solid var(--border);background:var(--surface);border-radius:12px;padding:10px 12px;cursor:pointer;display:flex;flex-direction:column;gap:2px;color:var(--text);min-height:44px}
 .cv-snip b{font-weight:600;font-size:.9rem}.cv-snip span{font-size:.84rem;color:var(--muted)}
 body.cv-on #buddy-root{display:none}
+.bd-say{all:unset;display:block;cursor:pointer;text-align:start;line-height:1.6;border-radius:10px}.bd-say:focus-visible{outline:2px solid var(--primary);outline-offset:3px}.bd-say p{margin:0}
 @media (max-width:860px){#bottomnav{background:color-mix(in srgb,var(--surface) 96%,transparent)}}
 @media (max-width:600px){#top-actions .countdown.hide-xs{display:none}}
 #shell,#topbar{max-width:100%;min-width:0}#top-actions{min-width:0}#top-actions>.icon-btn,#top-actions>.pomo-btn{flex:none;min-width:44px}#top-title{min-width:0;flex:1 1 0}
@@ -1426,6 +1427,134 @@ html,body{overflow-x:clip}
 @media (max-width:640px){.cv-tb{width:42px;height:42px}.cv-tb.sm{width:38px}.cv-pn{min-width:0;font-size:.8rem}.cv-paper{max-width:92px}.cv-split-btn{display:none}.cv-pages{gap:2px;padding-inline:6px}.cv-pages .cv-flex{min-width:0}#cv-save{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}
 @media (max-width:899px){.cv-split-btn{display:none}}
 @media print{.cv-bar,.cv-pages{display:none}}
+
+/* ---- 19: foundation · rewrite · ask-assistant ---- */
+.mini-face{width:18px;height:18px;flex:none;color:var(--primary)}
+.selbar .sb-assist{background:var(--primary-soft);color:var(--primary-ink);font-weight:700}
+.selbar .sb-assist:hover{background:var(--primary-tint)}
+.rw-bar{display:flex;align-items:center;justify-content:flex-end;gap:6px;flex-wrap:wrap;margin:0 0 6px;min-height:32px}
+.rw-bar .rw-btn{color:var(--muted);font-weight:600}
+.rw-ver{display:inline-flex;align-items:center;gap:2px;background:var(--surface-2);border-radius:999px;padding:2px 4px;margin-inline-end:auto}
+.rw-ver .tiny{padding:0 4px;color:var(--text)}
+.rw-pop{max-width:340px}.rw-grid{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}
+.rw-free .input{flex:1;min-width:0}.rw-free label{display:block;margin-bottom:4px}
+.fd-page .fd-meta{display:flex;align-items:center;gap:6px;margin:-4px 0 10px}
+.fd-hook{font-size:1.08rem;line-height:1.8;margin:0 0 14px;padding:12px 14px;border-inline-start:3px solid var(--primary);background:var(--primary-soft);border-radius:12px;color:var(--text)}
+.fd-sec{margin:0 0 18px}.fd-sec:last-child{margin-bottom:0}
+.fd-sec h2{font-size:1.05rem;margin:0 0 6px;display:flex;align-items:center;gap:8px}
+.fd-n{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--primary-soft);color:var(--primary-ink);font-size:.85rem}
+.fd-why{margin-top:8px;padding:8px 12px;border-radius:10px;background:var(--surface-2);font-size:.92rem}
+.fd-ana{margin-top:8px;padding:8px 12px;border-radius:10px;background:var(--accent-soft);font-size:.92rem;color:var(--text)}
+.fd-pre{list-style:none;margin:0;padding:0;display:grid;gap:6px}.fd-pre li{display:flex;flex-direction:column;gap:2px;padding:8px 12px;border:1px solid var(--border);border-radius:10px}
+.fd-gl{margin-top:14px}.fd-gl h2,.fd-ready h2{font-size:1.05rem;margin:0 0 8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fd-legend{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;color:var(--muted)}
+.fd-k::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-inline-end:5px;background:var(--fdc)}
+.fd-structure{--fdc:#e0607e}.fd-term{--fdc:#5b7cfa}.fd-process{--fdc:#2fa37a}.fd-clinical{--fdc:#d98a1c}
+.fd-terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin:0}
+.fd-t{padding:8px 12px;border-radius:10px;border:1px solid var(--border);border-inline-start:3px solid var(--fdc)}
+.fd-t dt{font-weight:700;margin-bottom:2px}.fd-t dd{margin:0;font-size:.9rem;color:var(--muted)}
+.fd-ready{margin-top:14px}.fd-q{margin-bottom:12px}.fd-q .q-text{margin:0 0 6px}
+.fd-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px}
+.fd-why2{margin-top:6px;color:var(--muted)}.fd-why2.ok{color:var(--text)}
+.fd-link{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}.fd-la{display:flex;flex-direction:column;padding:6px 10px;border-radius:10px;background:var(--surface-2);text-decoration:none;color:var(--text)}
+.fd-empty{text-align:center;padding:32px 20px}.fd-empty h2{margin:8px 0 4px}.fd-ill{font-size:2.6rem;line-height:1}.fd-ill.sm{font-size:1.7rem}
+.fd-sug{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px;padding:12px 14px}
+.bdp-quote{margin:0 10px 6px;padding:8px 10px;border-radius:12px;background:var(--surface-2)}
+.bdp-quote .bq-h{display:flex;align-items:center;gap:6px}.bdp-quote blockquote{margin:6px 0;padding:0 10px;border-inline-start:3px solid var(--primary);font-size:.88rem;max-height:84px;overflow:auto}
+.bdp-sq{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}.bdp-sq .chip{flex:none}
+
+/* ---- 20: sidebar compact / rail / hidden / resize / drawer ---- */
+@media (min-width:901px){
+  body{--sidebar-w:var(--side-w,232px)}
+  #sidebar{padding:12px 10px;transition:width .22s cubic-bezier(.2,.8,.2,1),transform .22s cubic-bezier(.2,.8,.2,1),visibility .22s}
+  #shell{transition:margin .22s cubic-bezier(.2,.8,.2,1)}
+  #sidebar .brand{padding:2px 6px 10px;padding-inline-end:68px;gap:8px}
+  #sidebar .brand svg{width:32px;height:32px}#sidebar .brand b{font-size:1.2rem}#sidebar .brand small{font-size:.7rem;margin-top:2px}
+  #sidebar .nav-item{padding:7px 10px;gap:10px;font-size:.92rem;min-height:40px}
+  #sidebar .nav-item svg{width:18px;height:18px}
+  #sidebar .lec-pill{padding:8px 10px;font-size:.82rem}
+  .sd-tools{position:absolute;inset-block-start:calc(12px + var(--safe-t,0px));inset-inline-end:8px;display:flex;gap:2px;z-index:2}
+  .sd-tools .icon-btn{color:var(--muted)}
+  #side-grip{position:absolute;inset-block:0;inset-inline-end:-6px;width:12px;cursor:col-resize;touch-action:none;z-index:3;background:transparent}
+  #side-grip::after{content:"";position:absolute;inset-block:0;inset-inline-start:5px;width:2px;border-radius:2px;background:var(--primary);opacity:0;transition:opacity .15s}
+  #side-grip:hover::after,#side-grip:focus-visible::after,body.sd-dragging #side-grip::after{opacity:.55}
+  #side-grip:focus-visible{outline:none}
+  body.sd-dragging,body.sd-dragging *{user-select:none!important;-webkit-user-select:none!important;cursor:col-resize!important}
+  body.sd-dragging #sidebar,body.sd-dragging #shell{transition:none!important}
+  body.sd-rail{--sidebar-w:68px}
+  body.sd-rail #sidebar{padding-inline:8px;align-items:stretch}
+  body.sd-rail #sidebar .brand{padding:2px 0 8px;justify-content:center}
+  body.sd-rail #sidebar .brand>span:last-child,body.sd-rail #sidebar .nav-item>span:not(.badge),body.sd-rail #sidebar .sec-label,body.sd-rail #sidebar .nav-sub,body.sd-rail #sidebar .xp-mini,body.sd-rail #side-lec .lec-pill>div,body.sd-rail #sd-hide{display:none}
+  body.sd-rail .sd-tools{position:static;justify-content:center;margin-bottom:6px}
+  body.sd-rail #sidebar .nav-item{justify-content:center;padding:10px 0;position:relative;min-height:44px}
+  body.sd-rail #sidebar .nav-item .badge{position:absolute;inset-block-start:2px;inset-inline-end:4px;font-size:.62rem;min-width:16px;padding:0 4px}
+  body.sd-rail #side-lec .lec-pill{justify-content:center;padding:6px;background:transparent}
+  body.sd-hidden{--sidebar-w:0px}
+  body.sd-hidden #sidebar{transform:translateX(100%);visibility:hidden}
+  [dir="ltr"] body.sd-hidden #sidebar{transform:translateX(-100%)}
+}
+#sd-open{flex:none}#sd-open[hidden]{display:none!important}
+@media (max-width:900px){
+  .sd-tools,#side-grip{display:none}
+  body.sd-drawer #sidebar{display:flex;width:min(300px,86vw);z-index:70;box-shadow:var(--shadow-lg);padding:calc(14px + env(safe-area-inset-top)) 12px calc(14px + env(safe-area-inset-bottom));background:var(--surface);animation:sd-in .22s cubic-bezier(.2,.8,.2,1)}
+  #sd-backdrop{position:fixed;inset:0;background:rgba(10,12,30,.38);z-index:65;animation:sd-fade .2s}
+}
+@keyframes sd-fade{from{opacity:0}to{opacity:1}}
+@keyframes sd-in{from{transform:translateX(30%);opacity:.3}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){#sidebar,#shell{transition:none!important}body.sd-drawer #sidebar,#sd-backdrop{animation:none}}
+
+/* ---- 22: adhkar ticker ---- */
+.adhkar{display:inline-flex;align-items:center;gap:6px;flex:0 1 auto;min-width:0;max-width:clamp(120px,24vw,320px);height:32px;padding:0 10px;margin-inline-end:8px;border:1px solid var(--hair,var(--border));border-radius:999px;background:var(--surface-2);color:var(--muted);font:inherit;font-size:.78rem;cursor:pointer;overflow:hidden}
+.adhkar:hover{color:var(--text)}
+.adhkar .ad-i{width:14px;height:14px;flex:none;fill:currentColor;opacity:.75}
+.adhkar .ad-t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;transition:opacity .32s ease,transform .32s ease}
+.adhkar .ad-t.out{opacity:0;transform:translateY(3px)}
+.adhkar.paused{border-style:dashed}.adhkar .ad-p{font-size:.7rem}
+@media (max-width:1100px){.adhkar{max-width:clamp(110px,20vw,220px)}}
+@media (max-width:600px){.adhkar{width:44px;height:44px;padding:0;justify-content:center;margin-inline-end:0;border:0;background:transparent;flex:none}.adhkar .ad-t,.adhkar .ad-p{display:none}.adhkar .ad-i{width:18px;height:18px}}
+.ad-peek{position:fixed;inset-inline:12px;z-index:80;padding:10px 14px;border-radius:14px;background:var(--surface);color:var(--text);box-shadow:var(--shadow-lg);font-size:.92rem;text-align:center;animation:sd-fade .2s}
+@media (max-width:370px){.adhkar{display:none}}
+@media (prefers-reduced-motion:reduce){.adhkar .ad-t{transition:none}.ad-peek{animation:none}}
+
+/* ---- credits: stacked links + dua line ---- */
+.credits{flex-direction:column;gap:0}
+.cr-links{display:flex;flex-direction:column;align-items:center}
+.cr-links .ig-link{min-height:44px}
+.cr-dua{margin-top:2px;font-size:.76rem;color:var(--primary-ink,var(--primary));opacity:.9}
+
+/* ---- 23: onboarding v2 ---- */
+.modal.onb2{max-width:520px}
+.modal.onb2 .modal-h .icon-btn{color:var(--muted);background:var(--surface-2)}
+.onb-hero2{text-align:center;padding:28px 6px 8px}
+.onb2 .onb-logo{width:64px;height:64px;margin:0 auto 14px}
+.onb-emo{font-size:2.6rem;line-height:1;margin-bottom:8px}
+.onb-h{font-size:1.35rem;line-height:1.55;margin:0 0 6px;color:var(--text)}.onb-h.sm{font-size:1.15rem;display:flex;align-items:center;gap:10px}
+.onb-slide p,.onb-d{margin:0 0 12px;color:var(--muted);font-size:1rem;line-height:1.8}
+.onb-dots{display:flex;justify-content:center;gap:4px;margin:6px 0 4px}
+.onb-dots button{width:28px;height:28px;border:0;background:none;padding:0;cursor:pointer;display:grid;place-items:center}
+.onb-dots button::before{content:"";width:8px;height:8px;border-radius:99px;background:var(--border);transition:width .2s,background .2s}
+.onb-dots button.on::before{width:22px;background:var(--primary)}
+.onb-cta{display:flex;flex-direction:column;align-items:stretch;gap:8px;margin-top:14px}
+.onb-row{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.onb-big{width:100%;justify-content:center;min-height:52px;text-decoration:none}
+.onb-kh{display:flex;align-items:center;gap:8px;margin:4px 0 14px;padding-inline-end:44px}
+.onb-prog{flex:1;display:flex;flex-direction:column;gap:2px}
+.onb-bar{height:5px;border-radius:9px;background:var(--surface-3);overflow:hidden}.onb-bar i{display:block;height:100%;background:var(--primary);border-radius:9px;transition:width .3s}
+.onb-n{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--primary);color:#fff;font-size:.95rem;flex:none}
+.onb-mockw{margin:6px 0 14px;border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm)}
+.onb-mock{display:block;width:100%;height:auto}
+.onb-hl{fill:none;stroke:#f59e0b;stroke-width:3;animation:onb-pulse 1.6s ease-in-out infinite}
+@keyframes onb-pulse{0%,100%{stroke-opacity:1}50%{stroke-opacity:.35}}
+.onb-paste{display:flex;gap:6px;align-items:center}.onb-paste .input{flex:1;min-width:0;font-size:16px}
+.onb-msg{min-height:1.6em;margin:8px 0}.onb-msg.good{color:var(--accent);font-weight:700}.onb-msg.bad{color:var(--danger)}.onb-msg.warn{color:var(--warn)}
+.onb-trust{display:flex;align-items:center;gap:6px;justify-content:center;margin:12px 0 4px;font-size:.9rem;color:var(--text)}.onb-trust svg{width:15px;height:15px;color:var(--accent)}
+.onb-why,.onb-faq{margin-top:8px;border:1px solid var(--border);border-radius:12px;padding:0 12px}
+.onb-why summary,.onb-faq summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:600;color:var(--text)}
+.onb-why ul{margin:0 0 10px;padding-inline-start:18px;line-height:1.85;font-size:.94rem}
+.onb-faq dl{margin:0 0 10px;font-size:.94rem;line-height:1.8}.onb-faq dt{font-weight:700;margin-top:6px}.onb-faq dd{margin:0;color:var(--muted)}
+.onb-done{text-align:center;padding:28px 6px 6px}
+@media (max-width:600px){.modal.onb2{max-height:100dvh}.onb-h{font-size:1.2rem}}
+@media (prefers-reduced-motion:reduce){.onb-hl{animation:none}.onb-dots button::before,.onb-bar i{transition:none}}
 </style>
 </head>
 <body>
@@ -1466,7 +1595,7 @@ html,body{overflow-x:clip}
 /* =====================================================================
    ذاكِر — Zakir: Arabic-first AI study companion (single-file app)
    ===================================================================== */
-const APP_VERSION = '2.3.1';
+const APP_VERSION = '2.4.0';
 const DEFAULT_MODEL = 'gemini-3.8-flash'; // current-gen stable Flash (ai.google.dev, Oct 2026); auto-switches if a key lacks it
 const API_BASE = 'https://generativelanguage.googleapis.com/v1beta';
 const UPLOAD_BASE = 'https://generativelanguage.googleapis.com/upload/v1beta/files';
@@ -1853,7 +1982,7 @@ const jitter = ms => Math.round(ms * (0.6 + Math.random() * 0.8));
 const knownModels = () => { const l = Settings.get('models', null); return Array.isArray(l) && l.length ? l : FALLBACK_MODELS; };
 async function geminiRequest({contents, system, json = false, schema, temperature = 0.7, stream = false, onChunk, signal, maxTokens, keepAlive = false}) {
   const key = Settings.get('apiKey', '');
-  if (!key) { showOnboarding(); throw new AIError('أضف مفتاح Gemini المجاني أولاً لتفعيل الذكاء الاصطناعي.', 'nokey'); }
+  if (!key) { showOnboarding(false, null, 'key'); throw new AIError('أضف مفتاح Gemini المجاني أولاً لتفعيل الذكاء الاصطناعي.', 'nokey'); }
   let model = modelName(); let switched = 0;
   // the preferred model is resting after an overload → start on the best available alternative (session-only, setting untouched)
   if (busyModels().includes(model)) { const alt = pickBestModel(knownModels(), [model, ...unusableModels(), ...busyModels()]); if (alt) model = alt; }
@@ -2415,7 +2544,7 @@ const GFiles = {
   netErr() { return navigator.onLine === false ? new AIError('أنت غير متصل بالإنترنت. تحقق من الاتصال وحاول مرة ثانية.', 'network', true) : new AIError('تعذّر الوصول لخدمة رفع الملفات من متصفحك.', 'cors', true); },
   async upload(blob, mime, displayName, onProg) {
     const key = Settings.get('apiKey', '');
-    if (!key) { showOnboarding(); throw new AIError('أضف مفتاح Gemini المجاني أولاً لتفعيل الذكاء الاصطناعي.', 'nokey'); }
+    if (!key) { showOnboarding(false, null, 'key'); throw new AIError('أضف مفتاح Gemini المجاني أولاً لتفعيل الذكاء الاصطناعي.', 'nokey'); }
     if (this.blocked()) throw new AIError('خدمة رفع الملفات غير متاحة من متصفحك.', 'cors');
     for (let attempt = 0; ; attempt++) {
       try { const m = await this._upload(key, blob, mime, displayName, onProg); Settings.set('filesBlocked', 0); return m; }
@@ -3312,7 +3441,7 @@ document.addEventListener('click', e => {
     $('.st-prev', st).disabled = i === 0; $('.st-next', st).disabled = i === n - 1; $('.st-count', st).textContent = `${arNum(i + 1)} / ${arNum(n)}`; const d = $$('.st-dot', st)[i]; d && d.scrollIntoView({block: 'nearest', inline: 'center', behavior: 'smooth'}); }
   const ab = e.target.closest('[data-a="aids"]'); if (ab) { e.stopPropagation(); Aids.open(ab); }
 });
-document.addEventListener('click', e => { if (Pop.el && e.target.isConnected && !Pop.el.contains(e.target) && !e.target.closest('.vt,.rc,.ic,.dd-mark,.parabar,.selbar,[data-a="aids"],.modal-bg,.mm-wrap,mark.nm,.lr-btn,.dropdown')) Pop.close(); });
+document.addEventListener('click', e => { if (Pop.el && e.target.isConnected && !Pop.el.contains(e.target) && !e.target.closest('.vt,.rc,.ic,.dd-mark,.parabar,.selbar,[data-a="aids"],.modal-bg,.mm-wrap,mark.nm,.lr-btn,.rw-btn,.dropdown')) Pop.close(); });
 /* =====================================================================
    Demo lecture: Anatomy of the Heart (pre-written; showcases image + recall chips)
    ===================================================================== */
@@ -4186,7 +4315,7 @@ function bindErrorCard(retry, root = main()) {
   r && r.addEventListener('click', go1);
   const au = $('[data-auto]', root); let tm = null;
   if (au) { au.hidden = false; let n = +au.dataset.auto || 30; tm = setInterval(() => { if (!au.isConnected) return clearInterval(tm); if (document.hidden) return; n--; const b = $('[data-cd-n]', au); if (b) b.textContent = arNum(Math.max(n, 0)); if (n <= 0) go1(); }, 1000); }
-  const o = $('[data-onboard]', root); o && o.addEventListener('click', () => showOnboarding(true, retry));
+  const o = $('[data-onboard]', root); o && o.addEventListener('click', () => showOnboarding(true, retry, 'key'));
 }
 function makePainter(el, cursor = true) {
   let pending = null, raf = null, mine = undefined;
@@ -4270,7 +4399,7 @@ async function renderHome() {
   $$('[data-lib-subj]').forEach(b => b.addEventListener('click', () => { const v = b.dataset.libSubj; Settings.set('libSubj', Settings.get('libSubj', '*') === v && v !== '*' ? '*' : v); renderHome().then(() => { const g = $('.lib-filter') || $('.sec-head'); g && g.scrollIntoView({block: 'nearest'}); }); }));
   ($('#subj-later') || {}).onclick = () => { Settings.set('subjPrompted', true); $('#subj-prompt').remove(); };
   Study.bindBanner(main());
-  $$('[data-onb]').forEach(ob => ob.addEventListener('click', () => showOnboarding(true)));
+  $$('[data-onb]').forEach(ob => ob.addEventListener('click', () => showOnboarding(true, null, 'key')));
   $$('.lec-card').forEach(c => {
     c.addEventListener('click', e => { if (e.target.closest('.menu')) return; go('overview', c.dataset.id); });
     c.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.target.closest('.menu')) go('overview', c.dataset.id); });
@@ -5021,8 +5150,9 @@ function openSettings() {
     <div><div class="small" style="font-weight:700;margin-bottom:6px">🎨 المظهر</div>${seg('theme', [['light', '☀️ فاتح'], ['dark', '🌙 داكن'], ['auto', '🌗 تلقائي']], Theme.mode())}<div class="tiny muted" style="margin-top:6px">«تلقائي»: فاتح بالنهار، وبعد المغرب ألوان دافئة قليلة الأزرق تريّح العين.</div></div>
     <div class="st-sec"><h4>المواد والرفيق</h4>
       <div class="row" style="margin:8px 0"><span class="small" style="flex:1">المواد (${arNum(Subjects.list().length)})</span><button class="btn btn-sm" id="st-subj">${icon('book')} إدارة المواد</button></div>
+      <label class="aid-sw"><span><b>أذكار بجانب الساعة</b><small>ذكر قصير يتغيّر بهدوء كل دقيقة تقريباً</small></span><span class="switch"><input type="checkbox" id="st-adhkar" ${Settings.get('adhkar', true) ? 'checked' : ''}><span></span></span></label>
       <label class="aid-sw"><span><b>رفيق ذاكِر</b><small>الشخصية العائمة اللي ترتّب مواعيدك وتبدأ معك المذاكرة</small></span><span class="switch"><input type="checkbox" id="st-buddy" ${Companion.enabled() ? 'checked' : ''}><span></span></span></label>
-      <label class="aid-sw"><span><b>تذكيرات لطيفة</b><small>رسالة وحدة الصبح والظهر والمسا بالكثير</small></span><span class="switch"><input type="checkbox" id="st-nudge" ${Settings.get('buddyNudges', true) ? 'checked' : ''}><span></span></span></label>
+      <div class="field" style="margin:8px 0"><span class="small"><b>متابعة الرفيق</b> <span class="tiny muted">— رسائل صغيرة جنب الرفيق تسأل عنك وتذكّرك (تنتظر استراحة البومودورو)</span></span><div class="seg" role="radiogroup" aria-label="متابعة الرفيق" id="st-freq">${[['off', 'إيقاف'], ['light', 'خفيف'], ['normal', 'عادي'], ['frequent', 'كثير']].map(([k, l]) => `<button type="button" role="radio" data-v="${k}" aria-checked="${Companion.freq() === k}" class="${Companion.freq() === k ? 'on' : ''}">${l}</button>`).join('')}</div></div>
       <div class="tiny muted">${esc(Notify.statusText())}</div></div>
     ${TTS.supported() ? `<div class="grid g2"><label class="field">🔊 صوت القراءة<select class="select" id="st-voice"><option value="">تلقائي (عربي إن وُجد)</option>${vsorted.map(v => `<option value="${esc(v.name)}" ${Settings.get('voice', '') === v.name ? 'selected' : ''}>${esc(v.name)} (${esc(v.lang)})</option>`).join('')}</select>${voices.some(v => v.lang.startsWith('ar')) ? '' : '<span class="hint">لا يوجد صوت عربي مثبّت في جهازك؛ سيُستخدم الصوت الافتراضي.</span>'}</label>
       <label class="field">سرعة القراءة: <span id="st-rate-v">${Settings.get('rate', 1)}×</span><input type="range" id="st-rate" min=".6" max="1.6" step=".1" value="${Settings.get('rate', 1)}"><button class="btn btn-sm" id="st-vtest" type="button">${icon('volume')} تجربة</button></label></div>` : ''}
@@ -5032,6 +5162,7 @@ function openSettings() {
       <label class="aid-sw"><span><b>تعمّق أكثر ✦</b><small>علامات صغيرة لمعلومات إضافية خارج المحاضرة</small></span><span class="switch"><input type="checkbox" id="st-deep" ${Settings.get('deep', false) ? 'checked' : ''}><span></span></span></label>
       <div class="row" style="margin:8px 0"><span class="small" style="flex:1">حجم الخط</span><button class="btn btn-sm" data-fs="-1" aria-label="تصغير الخط">أ-</button><button class="btn btn-sm" data-fs="1" aria-label="تكبير الخط">أ+</button></div>
       ${'Notification' in window ? `<div class="row" style="margin:8px 0"><span class="small" style="flex:1">تنبيه يومي قبل ما تنسى (منحنى النسيان)</span><button class="btn btn-sm" id="st-notif">${Notification.permission === 'granted' ? '✓ مفعّل' : 'فعّل'}</button></div>` : ''}</div>
+    <div class="row" style="margin-bottom:10px"><button class="btn btn-sm" id="st-guide">${icon('compass')} شرح البداية</button><span class="tiny muted">يعرض شاشات الترحيب وخطوات المفتاح من جديد</span></div>
     <div class="row"><button class="btn btn-sm btn-danger" id="st-wipe">${icon('trash')} مسح كل البيانات</button><span class="spacer"></span><span class="tiny faint">ذاكِر v${APP_VERSION}</span></div></div>`,
     actions: [{label: 'حفظ', cls: 'btn-primary', onClick: bg => {
       const k = $('#st-key', bg).value.trim(); Settings.set('apiKey', k); Settings.set('model', $('#st-model', bg).value || DEFAULT_MODEL); Settings.set('fast', $('#st-fast', bg).checked);
@@ -5047,8 +5178,10 @@ function openSettings() {
         catch (e) { m.innerHTML = `<span style="color:var(--danger)">${esc(e.message)}</span>`; }
       });
       $('#st-subj', bg).onclick = () => Subjects.organize();
+      $('#st-guide', bg).onclick = () => { const x = $('[data-close]', bg); x ? x.click() : bg.remove(); setTimeout(openStartGuide, 60); };
+      $('#st-adhkar', bg).onchange = e => { Settings.set('adhkar', e.target.checked); Adhkar.mount(); };
       $('#st-buddy', bg).onchange = e => { Settings.set('buddyOn', e.target.checked); Companion.close(); Companion.mount(); };
-      $('#st-nudge', bg).onchange = e => Settings.set('buddyNudges', e.target.checked);
+      $$('#st-freq [data-v]', bg).forEach(x => x.onclick = () => { Companion.setFreq(x.dataset.v); $$('#st-freq [data-v]', bg).forEach(y => { const on = y === x; y.classList.toggle('on', on); y.setAttribute('aria-checked', on); }); });
       $('#st-chips', bg).onchange = e => Aids.set('chips', e.target.checked); $('#st-deep', bg).onchange = e => Aids.set('deep', e.target.checked);
       const nb = $('#st-notif', bg); nb && nb.addEventListener('click', async () => { try { const p = await Notification.requestPermission(); nb.textContent = p === 'granted' ? '✓ مفعّل' : 'مرفوض من المتصفح'; } catch { nb.textContent = 'غير مدعوم'; } });
       const rr = $('#st-rate', bg); rr && rr.addEventListener('input', () => $('#st-rate-v', bg).textContent = rr.value + '×');
@@ -5056,27 +5189,7 @@ function openSettings() {
       $('#st-wipe', bg).addEventListener('click', async () => { if (!(await confirmDialog('مسح كل المحاضرات والكروت والنتائج والمفتاح من هذا المتصفح نهائياً؟', 'مسح الكل', true))) return; await DB.clear(); Object.keys(localStorage).filter(k => k.startsWith('zakir.')).forEach(k => localStorage.removeItem(k)); location.hash = '#/'; location.reload(); });
     }});
 }
-let onboardingOpen = false;
-function showOnboarding(force = false, after) {
-  if (onboardingOpen || $('.modal-bg')) { if (!force) return; }
-  if (onboardingOpen) return; onboardingOpen = true;
-  openModal({title: 'أهلاً بك في ذاكِر', cls: 'onb', dismissable: true, body: `<div class="onb-hero"><div class="onb-logo">${logo()}</div><div class="onb-kicker">رفيقك في المذاكرة</div><h2 class="onb-title">ارفع محاضرتك… وذاكِر يشرحها لك من الصفر</h2>
-      <ul class="onb-feats"><li><span>${icon('tutor')}</span><b>شرح مبسّط</b><small>قسم قسم، بصور فوق الكلمات</small></li><li><span>${icon('cards')}</span><b>مراجعة ذكية</b><small>كروت وأسئلة بالتكرار المتباعد</small></li><li><span>${icon('calendar')}</span><b>مواعيدك</b><small>عدّ تنازلي وتذكير قبل الاختبار</small></li></ul></div>
-    <p class="onb-lead">ذاكِر يستخدم ذكاء <b>Google Gemini</b>. تحتاج مفتاح <b>مجاني</b> مرة وحدة بس:</p>
-    <ol class="steps-ol"><li><div>افتح <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener"><b>Google AI Studio ↗</b></a> وسجّل دخولك بحساب Google.</div></li><li><div>اضغط <b>«Create API key»</b> (إنشاء مفتاح) وانسخه.</div></li><li><div>ألصقه هنا واضغط <b>«حفظ والبدء»</b>.</div></li></ol>
-    <div class="row nowrap"><input class="input ltr" id="ob-key" type="password" placeholder="الصق المفتاح هنا" autocomplete="off" spellcheck="false"><button class="icon-btn" id="ob-eye" aria-label="إظهار">${icon('eye')}</button></div><div class="small" id="ob-msg" style="margin-top:8px;min-height:1.4em"></div>
-    <div class="tiny faint onb-lock">${icon('lock')} المفتاح يُحفظ في متصفحك فقط ويُرسل مباشرة إلى Google.</div>`,
-    actions: [{label: 'حفظ والبدء', cls: 'btn-primary', keep: true, onClick: (bg, close) => {
-      const k = $('#ob-key', bg).value.trim(); const m = $('#ob-msg', bg); if (!/^[A-Za-z0-9_.\-]{20,}$/.test(k)) { m.innerHTML = '<span style="color:var(--danger)">المفتاح غير مكتمل — تأكد إنك نسخته كامل</span>'; return false; }
-      m.innerHTML = '<span class="spin" style="width:14px;height:14px"></span> نتحقق من المفتاح…';
-      fetchModels(k).then(list => { Settings.set('apiKey', k); Settings.set('onboarded', true); toast('تم تفعيل الذكاء الاصطناعي ✨ ' + arNum(list.length) + ' نموذج متاح', 'ok'); onboardingOpen = false; close(); renderChrome(); if (App.tab === 'home') renderHome(); after && after(); })
-        .catch(e => { if (e.code === 'network') { Settings.set('apiKey', k); Settings.set('onboarded', true); toast('حفظنا المفتاح، لكن تعذّر التحقق منه الآن (الشبكة).', 'warn'); onboardingOpen = false; close(); renderChrome(); after && after(); } else m.innerHTML = `<span style="color:var(--danger)">${esc(e.message)}</span>`; });
-      return false; }},
-      {label: `${icon('flask')} تجربة بدون مفتاح`, cls: '', onClick: () => { Settings.set('onboarded', true); onboardingOpen = false; startDemo(); }},
-      {label: 'لاحقاً', cls: 'btn-ghost', onClick: () => { Settings.set('onboarded', true); onboardingOpen = false; }}],
-    onMount: (bg) => { $('#ob-eye', bg).addEventListener('click', () => { const i = $('#ob-key', bg); i.type = i.type === 'password' ? 'text' : 'password'; }); $('#ob-key', bg).addEventListener('keydown', e => { if (e.key === 'Enter') $('[data-act="0"]', bg).click(); });
-      const obs = new MutationObserver(() => { if (!document.body.contains(bg)) { onboardingOpen = false; obs.disconnect(); } }); obs.observe($('#modal-root'), {childList: true}); }});
-}
+let onboardingOpen = false; // showOnboarding() lives in 23_onboard.js
 
 /* =====================================================================
    Pomodoro
@@ -6428,11 +6541,15 @@ const BUDDY_FACE = `<svg viewBox="0 0 64 64" class="bd-svg" aria-hidden="true"><
   <path class="bd-mouth m-happy" d="M23 37.5c2 8 16 8 18 0z" fill="#1d1640"/>
   <path class="bd-mouth m-flat" d="M26 41c3-2 9-2 12 0" fill="none" stroke="#1d1640" stroke-width="2.6" stroke-linecap="round"/>
   <g class="bd-dots" fill="#fff"><circle cx="24" cy="46" r="1.8"/><circle cx="32" cy="46" r="1.8"/><circle cx="40" cy="46" r="1.8"/></g></g></svg>`;
+const BUDDY_FREQ = {off: 0, light: 45 * 60e3, normal: 30 * 60e3, frequent: 18 * 60e3};
 const Companion = {
   open: false, busy: false, moodT: null,
   hist() { return Meta.get('buddy', []); },
   async push(m) { const h = [...this.hist(), {...m, at: Date.now()}].slice(-60); await Meta.set('buddy', h); },
   enabled() { return Settings.get('buddyOn', true); },
+  // check-in frequency: off · light · normal · frequent (old on/off switch maps onto it)
+  freq() { const f = Settings.get('buddyFreq', null); return BUDDY_FREQ[f] ? f : (Settings.get('buddyNudges', true) ? 'normal' : 'off'); },
+  setFreq(f) { Settings.set('buddyFreq', f); Settings.set('buddyNudges', f !== 'off'); this.nextAt = null; },
   mount() {
     let root = $('#buddy-root'); if (!root) { root = document.createElement('div'); root.id = 'buddy-root'; document.body.appendChild(root); }
     if (!this.enabled()) { root.innerHTML = ''; return; }
@@ -6461,18 +6578,18 @@ const Companion = {
   show() {
     clearTimeout(this._ct); this.open = true; this.hideBubble(); $('#bd-btn') && $('#bd-btn').setAttribute('aria-expanded', 'true');
     let p = $('#bd-panel'); if (p) p.remove(); p = document.createElement('div'); p.id = 'bd-panel'; p.setAttribute('role', 'dialog'); p.setAttribute('aria-label', 'رفيق ذاكِر');
-    const nud = Settings.get('buddyNudges', true);
+    const nud = this.freq() !== 'off';
     p.innerHTML = `<div class="bdp-h"><span class="bdp-face" aria-hidden="true">${BUDDY_FACE}</span><div style="flex:1;min-width:0"><b>رفيقك</b><div class="tiny muted">${hasKey() ? 'يرتّب مواعيدك ويبدأ معك المذاكرة' : 'وضع تجريبي — أضف مفتاح Gemini للمحادثة الكاملة'}</div></div>
       <button class="icon-btn sm" id="bdp-nudge" aria-pressed="${nud}" aria-label="${nud ? 'إيقاف التذكيرات اللطيفة' : 'تشغيل التذكيرات اللطيفة'}" title="${nud ? 'التذكيرات شغّالة' : 'التذكيرات موقفة'}">${icon(nud ? 'bell' : 'belloff')}</button><button class="icon-btn sm" id="bdp-clear" aria-label="مسح المحادثة">${icon('trash')}</button><button class="icon-btn sm" id="bdp-x" aria-label="إغلاق">${icon('x')}</button></div>
       <div class="bdp-log" id="bdp-log" role="log" aria-live="polite" tabindex="0" aria-label="المحادثة"></div>
-      <div class="bdp-chips">${[['today', 'وش عندي اليوم؟'], ['plan', 'سوّ لي خطة مذاكرة'], ['review', 'نبدأ مراجعة'], ['pomo', 'بومودورو ٢٥ د']].map(([k, l]) => `<button class="chip" data-bq="${k}">${l}</button>`).join('')}</div>
+      <div class="bdp-chips">${[['today', 'وش عندي اليوم؟'], ['plan', 'سوّ لي خطة مذاكرة'], ['review', 'نبدأ مراجعة'], ['pomo', 'بومودورو ٢٥ د'], ...(hasKey() ? [] : [['guide', 'شرح البداية']])].map(([k, l]) => `<button class="chip" data-bq="${k}">${l}</button>`).join('')}</div>
       <form class="bdp-in" id="bdp-form"><label class="sr-only" for="bdp-t">رسالتك للرفيق</label><textarea id="bdp-t" class="textarea" rows="1" maxlength="1500" placeholder="مثلاً: عندي اختبار تشريح الخميس الساعة ٨"></textarea><button class="btn btn-primary" id="bdp-send" aria-label="إرسال">${icon('send') || '➤'}</button></form>`;
     document.body.appendChild(p); this.drawLog();
     $('#bdp-x').onclick = () => this.close();
-    $('#bdp-nudge').onclick = () => { Settings.set('buddyNudges', !Settings.get('buddyNudges', true)); toast(Settings.get('buddyNudges', true) ? 'التذكيرات اللطيفة شغّالة' : 'وقّفنا التذكيرات — تقدر ترجعها من هنا', 'ok', 2200); this.show(); };
+    $('#bdp-nudge').onclick = () => { this.setFreq(this.freq() === 'off' ? 'normal' : 'off'); toast(Settings.get('buddyNudges', true) ? 'التذكيرات اللطيفة شغّالة' : 'وقّفنا التذكيرات — تقدر ترجعها من هنا', 'ok', 2200); this.show(); };
     $('#bdp-clear').onclick = async () => { if (!(await confirmDialog('نمسح محادثتك مع الرفيق؟', 'مسح', true))) return; await Meta.set('buddy', []); this.drawLog(); };
     const Q = {today: 'وش عندي اليوم؟', plan: 'سوّ لي خطة مذاكرة لين أقرب اختبار', review: 'نبدأ مراجعة', pomo: 'شغّل بومودورو ٢٥ دقيقة'};
-    $$('[data-bq]', p).forEach(b => b.onclick = () => this.send(Q[b.dataset.bq], b.dataset.bq));
+    $$('[data-bq]', p).forEach(b => b.onclick = () => { if (b.dataset.bq === 'guide') { this.close(); return openStartGuide(); } this.send(Q[b.dataset.bq], b.dataset.bq); });
     const ta = $('#bdp-t'); $('#bdp-form').onsubmit = e => { e.preventDefault(); const v = ta.value.trim(); if (!v) return; ta.value = ''; if (this.busy) { this.queued = v; return; } this.send(v); };
     ta.oninput = () => clearTimeout(this._ct);
     ta.onkeydown = e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); $('#bdp-form').requestSubmit ? $('#bdp-form').requestSubmit() : $('#bdp-form').onsubmit(e); } if (e.key === 'Escape') this.close(); };
@@ -6571,7 +6688,7 @@ const Companion = {
   // proactive, gentle, at most once per slot — morning · midday · evening
   nudgeCheck(hour) {
     if (AUTOMATED || !['home', 'remind', 'planner'].includes(App.tab)) return;
-    if (!this.enabled() || !Settings.get('buddyNudges', true) || Settings.get('buddyMin', false) || this.open || document.hidden || $('.modal-bg') || document.body.classList.contains('focus-mode')) return;
+    if (!this.enabled() || this.freq() === 'off' || Settings.get('buddyMin', false) || this.open || document.hidden || $('.modal-bg') || document.body.classList.contains('focus-mode') || (Pomo.running && Pomo.mode === 'focus')) return;
     const h = typeof hour === 'number' ? hour : new Date().getHours(); const slot = h >= 6 && h < 11 ? 'am' : h >= 12 && h < 15 ? 'mid' : h >= 18 && h < 22 ? 'pm' : null; if (!slot) return;
     const seen = Settings.get('buddyNudged', {}); const k = dayKey() + ':' + slot; if (seen[k]) return; if (!(Lib.list || []).length) return;
     seen[k] = 1; Object.keys(seen).forEach(x => { if (!x.startsWith(dayKey())) delete seen[x]; }); Settings.set('buddyNudged', seen);
@@ -6582,14 +6699,59 @@ const Companion = {
       this.bubble(msg, due ? ['review', 'نراجع'] : ['pomo', 'بومودورو']); this.mood(close ? 'concern' : 'happy', 5000);
     }).catch(() => {});
   },
-  bubble(msg, act) {
-    const b = $('#bd-bubble'); if (!b) return; b.classList.remove('hidden');
-    b.innerHTML = `<div class="md small">${renderMd(msg)}</div><div class="row nowrap" style="gap:6px;margin-top:6px">${act ? `<button class="btn btn-sm btn-primary" data-bb="${act[0]}">${act[1]}</button>` : ''}<button class="btn btn-sm btn-ghost" data-bb="x">لاحقاً</button></div>`;
-    $$('[data-bb]', b).forEach(x => x.onclick = () => { const k = x.dataset.bb; this.hideBubble(); if (k === 'review') location.hash = '#/remind'; if (k === 'pomo') Pomo.startFocus(25); });
+  bubble(msg, act, prefill) {
+    const b = $('#bd-bubble'); if (!b) return; b.classList.remove('hidden'); this.prefill = prefill || null;
+    b.innerHTML = `<button class="bd-say md small" data-bb="chat" aria-label="افتح المحادثة: ${esc(String(msg).replace(/[*_`#>]/g, ''))}">${renderMd(msg)}</button><div class="row nowrap" style="gap:6px;margin-top:6px">${act ? `<button class="btn btn-sm btn-primary" data-bb="${act[0]}">${act[1]}</button>` : ''}<button class="btn btn-sm btn-ghost" data-bb="x">لاحقاً</button></div>`;
+    $$('[data-bb]', b).forEach(x => x.onclick = () => { const k = x.dataset.bb; const pf = this.prefill; this.hideBubble(); this.doBubble(k, pf); });
+    b.style.maxWidth = ''; const br = b.getBoundingClientRect(), vw = document.documentElement.clientWidth; if (br.right > vw - 8) b.style.maxWidth = Math.max(160, vw - 8 - br.left) + 'px';
     clearTimeout(this.bt); this.bt = setTimeout(() => this.hideBubble(), 15000);
   },
+  doBubble(k, pf) {
+    if (k === 'review') location.hash = '#/remind'; else if (k === 'pomo') Pomo.startFocus(25); else if (k === 'planner') location.hash = '#/planner';
+    else if (k === 'quiz' && App.lec) location.hash = lecUrl('quiz'); else if (k === 'lec' && pf && pf.lec) location.hash = `#/lec/${pf.lec}/overview`;
+    else if (k === 'chat') { this.show(); const t = $('#bdp-t'); if (t && pf && pf.text) { t.value = pf.text; t.focus(); try { t.setSelectionRange(t.value.length, t.value.length); } catch {} } else t && t.focus(); }
+  },
+  /* ---- active follow-up: gentle check-ins based on real activity ---- */
+  track() {
+    if (this.act) return; const A = this.act = {route: location.hash, since: Date.now(), last: Date.now(), active: 0, tick: Date.now(), back: false};
+    const mark = () => { const now = Date.now(); if (now - A.last > 12 * 60e3) A.back = true; A.last = now; };
+    ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(e => addEventListener(e, mark, {passive: true, capture: true}));
+    addEventListener('hashchange', () => { const r = location.hash.split('?')[0]; if (r !== A.route) { A.route = r; A.since = Date.now(); } });
+  },
+  tickActive(now = Date.now()) { const A = this.act; if (!A) return; const dt = Math.min(now - A.tick, 120000); A.tick = now; if (!document.hidden && now - A.last < 3 * 60e3) A.active += dt; },
+  quietNow() { return !this.enabled() || this.freq() === 'off' || Settings.get('buddyMin', false) || this.open || document.hidden || !!$('.modal-bg') || document.body.classList.contains('focus-mode') || document.body.classList.contains('cv-full') || (Pomo.running && Pomo.mode === 'focus') || !!$('#bd-bubble:not(.hidden)') || !!$('.tour-on'); },
+  async checkinCands() {
+    const A = this.act || {since: Date.now()}; const ctx = await this.context(); const now = Date.now(); const out = [];
+    const due = Object.values(ctx.srsDueBySubject || {}).reduce((a, b) => a + b, 0); const ex = Planner.upcomingExams(1)[0];
+    const lec = App.lec && location.hash.includes('/lec/') ? App.lec : null; const mins = Math.round((now - A.since) / 60e3);
+    const today = Planner.items().filter(x => !x.done && x.due && dayKey(new Date(x.due)) === dayKey());
+    const h = new Date().getHours(); const lastLec = (Lib.list || []).filter(l => !l.demo).sort((a, b) => (b.openedAt || b.createdAt || 0) - (a.openedAt || a.createdAt || 0))[0];
+    if (this.act && this.act.back) out.push({k: 'back', w: 9, msg: lastLec ? `هلا رجعت 👋 نكمل من «${lastLec.title}»؟` : 'هلا رجعت 👋 وش نسوي الحين؟', act: lastLec ? ['lec', 'نكمل'] : null, pf: {lec: lastLec && lastLec.id, text: lastLec ? `رجعت للمذاكرة — وين وقفت في «${lastLec.title}»؟ لخّص لي اللي فات بسرعة` : ''}});
+    if (lec && mins >= 20) out.push({k: 'long:' + lec.id, w: 8, msg: `صار لك ${arNum(mins)} دقيقة على «${lec.title}» 👏 تبي كويز سريع تثبّت فيه؟`, act: ['quiz', 'كويز سريع'], pf: {text: `سوّ لي ٥ أسئلة سريعة على «${lec.title}»`}});
+    if (lec) out.push({k: 'where:' + lec.id, w: 5, msg: ['كيفك؟ وين وصلت في «' + lec.title + '»؟', 'ماشي الحال مع «' + lec.title + '»؟ إذا فيه شي مو واضح قلّي 🙂', 'تحتاج مساعدة في «' + lec.title + '»؟'][Math.floor(now / 60e3) % 3], pf: {text: `وصلت في «${lec.title}» إلى: `}});
+    if (ex && ex.due - now < 7 * DAY) out.push({k: 'exam:' + ex.id, w: ex.due - now < 3 * DAY ? 10 : 6, msg: `${countdown(ex.due).replace(/^باقي\s*/, 'باقي ')} على «${ex.title}» — نسوي مراجعة مركّزة اليوم؟`, act: due ? ['review', 'نراجع'] : ['planner', 'مواعيدي'], pf: {text: `عندي «${ex.title}» بعد ${countdown(ex.due)}. سوّ لي خطة مراجعة قصيرة لليوم`}});
+    if (due >= 5) out.push({k: 'due', w: 6, msg: `عندك ${arNum(due)} بطاقة مستحقة — ٥ دقايق وتخلص منها ✨`, act: ['review', 'نراجع']});
+    if (today.length) out.push({k: 'plan', w: 5, msg: `باقي لك ${arNum(today.length)} من خطة اليوم — أولها «${today[0].title}»`, act: ['planner', 'مواعيدي'], pf: {text: `ساعدني أخلص «${today[0].title}» اليوم`}});
+    if (Activity.data()[dayKey()] >= 3) out.push({k: 'praise', w: 3, msg: 'يومك ماشي حلو اليوم 💪 استراحة ٥ دقايق تستاهلها', act: ['pomo', 'بومودورو']});
+    out.push({k: 'help', w: 2, msg: h >= 21 ? 'تحتاج شي قبل النوم؟ سؤال سريع أو مراجعة خفيفة 🌙' : 'تحتاج مساعدة؟ اسألني أي شي عن محاضراتك 🙂', pf: {text: ''}});
+    return out;
+  },
+  async checkin({force = false} = {}) {
+    if (!force && (AUTOMATED || this.quietNow())) return null; if (force && this.quietNow() && !Settings.get('forcePopups', false)) return null;
+    if (!(Lib.list || []).length) return null;
+    const base = BUDDY_FREQ[this.freq()]; if (!base) return null;
+    if (this.nextAt == null) this.nextAt = base * (0.85 + Math.random() * 0.3);
+    if (!force && !(this.act && this.act.back) && (!this.act || this.act.active < this.nextAt)) return null;
+    let cands; try { cands = await this.checkinCands(); } catch { return null; }
+    const recent = Settings.get('buddyRecent', []) || []; const fresh = cands.filter(c => !recent.includes(c.k)); const pool = fresh.length ? fresh : cands.filter(c => c.k !== recent[recent.length - 1]);
+    if (!pool.length) return null;
+    let r = Math.random() * pool.reduce((a, c) => a + c.w, 0); let c = pool[0]; for (const x of pool) { r -= x.w; if (r <= 0) { c = x; break; } }
+    if (c.k === 'back' || (this.act && this.act.back)) { if (this.act) this.act.back = false; }
+    Settings.set('buddyRecent', [...recent.filter(x => x !== c.k), c.k].slice(-6)); if (this.act) this.act.active = 0; this.nextAt = base * (0.85 + Math.random() * 0.3);
+    this.bubble(c.msg, c.act, c.pf); this.mood(c.k.startsWith('exam') ? 'concern' : 'happy', 5000); return c.k;
+  },
   hideBubble() { const b = $('#bd-bubble'); if (b) { b.classList.add('hidden'); b.innerHTML = ''; } },
-  start() { this.mount(); setInterval(() => this.nudgeCheck(), 60000); setTimeout(() => this.nudgeCheck(), 20000); }
+  start() { this.mount(); this.track(); setInterval(() => { this.tickActive(); this.nudgeCheck(); this.checkin(); }, 60000); setTimeout(() => this.nudgeCheck(), 20000); }
 };
 function localISO(t) { const d = new Date(t); const p = n => String(n).padStart(2, '0'); return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`; }
 /* =====================================================================
@@ -6661,7 +6823,8 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && Focus.on &
 
 /* ---------- credits footer (every view; hidden in focus mode & print) ---------- */
 const IG_SVG = `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><defs><radialGradient id="igg" cx="30%" cy="107%" r="150%"><stop offset="0" stop-color="#fdf497"/><stop offset=".05" stop-color="#fdf497"/><stop offset=".45" stop-color="#fd5949"/><stop offset=".6" stop-color="#d6249f"/><stop offset=".9" stop-color="#285AEB"/></radialGradient></defs><rect x="2" y="2" width="20" height="20" rx="6" fill="url(#igg)"/><rect x="6.2" y="6.2" width="11.6" height="11.6" rx="3.8" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="2.9" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="16.6" cy="7.4" r="1.05" fill="#fff"/></svg>`;
-function creditsHTML() { return `<span>© جميع الحقوق محفوظة — د. ياسر نضال رحّال</span><a class="ig-link" href="https://www.instagram.com/ay3._9/" target="_blank" rel="noopener" aria-label="حساب إنستقرام ay3._9">${IG_SVG}<span dir="ltr">@ay3._9</span></a>`; }
+const TG_SVG = `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="11" fill="#229ED9"/><path d="M5.4 11.7 16.9 7.3c.53-.2 1 .13.83.95l-1.96 9.24c-.14.66-.54.82-1.09.51l-3-2.21-1.45 1.4c-.16.16-.3.3-.6.3l.21-3.05 5.55-5.01c.24-.21-.05-.33-.37-.12l-6.86 4.32-2.95-.92c-.64-.2-.65-.64.14-.95z" fill="#fff"/></svg>`;
+function creditsHTML() { return `<span>© جميع الحقوق محفوظة — د. ياسر نضال رحّال</span><span class="cr-links"><a class="ig-link" href="https://www.instagram.com/ay3._9/" target="_blank" rel="noopener" aria-label="حساب إنستقرام ay3._9">${IG_SVG}<span dir="ltr">@ay3._9</span></a><a class="ig-link tg-link" href="https://t.me/yaser0_0" target="_blank" rel="noopener" aria-label="حساب تيليجرام yaser0_0">${TG_SVG}<span dir="ltr">@yaser0_0</span></a></span><span class="cr-dua">لا تنساني من دعواتك ❤️</span>`; }
 
 /* ---------- PWA: offline shell + one-time "add to home screen" hint on iPad/iPhone Safari ---------- */
 const PWA = {
@@ -7339,6 +7502,543 @@ document.addEventListener('keydown', e => CV.key(e));
 document.addEventListener('paste', e => CV.paste(e));
 addEventListener('pagehide', () => CV.flush()); document.addEventListener('visibilitychange', () => { if (document.hidden) CV.flush(); });
 VIEWS.canvas = async function () { const lec = App.lec; await CV.open(lec); };
+/* =====================================================================
+   التأسيس (foundation) · أعد الصياغة (rewrite anywhere) · اسأل المساعد (selection → companion)
+   ===================================================================== */
+const MINI_FACE = `<svg class="mini-face" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5" fill="currentColor" opacity=".16"/><circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8.8" cy="10.6" r="1.5" fill="currentColor"/><circle cx="15.2" cy="10.6" r="1.5" fill="currentColor"/><path d="M8.6 14.6q3.4 2.8 6.8 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>`;
+const FD_KIND = {structure: ['تشريح', 'anatomy'], term: ['مصطلح', 'concept'], process: ['عملية', 'diagram'], clinical: ['سريري', 'concept']};
+SCHEMA.foundation = S.obj({
+  minutes: S.int, hook: S.str, bigPicture: S.str, why: S.str,
+  prereqs: S.arr(S.obj({name: S.str, simple: S.str})),
+  sections: S.arr(S.obj({title: S.str, body: S.str, analogy: S.str})),
+  connect: S.str,
+  glossary: S.arr(S.obj({term: S.str, simple: S.str, kind: {type: 'STRING', enum: ['structure', 'term', 'process', 'clinical']}, image: S.bool})),
+  ready: S.arr(S.obj({q: S.str, options: S.arr(S.str), answer: S.int, why: S.str})),
+  linked: S.arr(S.obj({lectureId: S.str, terms: S.arr(S.str)}))
+}, ['bigPicture', 'sections', 'glossary', 'ready']);
+DEMO.foundation = {
+  minutes: 7, hook: 'تخيّل مضخة صغيرة بحجم قبضة يدك، تشتغل بدون ما توقف من قبل ما تنولد… هذي هي محاضرتنا.',
+  bigPicture: 'الجسم كله يحتاج **أكسجين** وأكل يوصله باستمرار، والدم هو «سيارة التوصيل». **القلب** هو المضخة اللي تدفع هالسيارات في طريقين:\n- طريق قصير للرئة عشان ياخذ الدم أكسجين.\n- طريق طويل لكل الجسم عشان يوزّعه.\n\nالمحاضرة كلها تشرح: وين القلب؟ وش أجزاؤه؟ وكيف يمشي الدم داخله بالترتيب بدون ما يرجع؟',
+  why: 'أي مرض بالقلب (جلطة، صمام تالف، ثقب) تفهمه بسهولة لما تعرف الأجزاء الطبيعية وترتيب مرور الدم. وهذي الأساسيات تجي في كل مادة طبية بعدين.',
+  prereqs: [{name: 'الشريان والوريد', simple: 'الشريان يطلع **من** القلب، والوريد يرجع **إلى** القلب — بغض النظر عن الأكسجين.'}, {name: 'الأكسجين في الدم', simple: 'دم «مؤكسج» = فيه أكسجين كثير (أحمر فاتح)، و«غير مؤكسج» = استهلكه الجسم.'}, {name: 'الجهات التشريحية', simple: 'يمين/يسار المريض نفسه، مو يمينك أنت وأنت تطالعه.'}],
+  sections: [
+    {title: 'وين القلب؟', body: 'في وسط الصدر بين الرئتين، مايل شوي لليسار، ومحمي بغلاف اسمه [[التامور|pericardium heart sac|anatomy]] (Pericardium).', analogy: 'مثل جوال داخل كفر قماش ناعم: الكفر يحميه ويخليه يتحرك بدون احتكاك.'},
+    {title: 'الأربع غرف', body: 'القلب فيه **أذينين** فوق (غرف استقبال) و**بطينين** تحت (غرف ضخ). بينهم جدار اسمه **الحاجز**. [[البطين الأيسر|left ventricle heart anatomy|anatomy]] هو الأسمك لأنه يضخ لكل الجسم.', analogy: 'الأذين = غرفة انتظار، والبطين = الغرفة اللي تدفّك للخارج بقوة.'},
+    {title: 'الأبواب (الصمامات)', body: 'بين كل غرفة والثانية فيه **صمام** يفتح باتجاه واحد بس، عشان الدم ما يرجع. أشهرها [[الصمام التاجي|mitral valve|anatomy]] بين الأذين والبطين الأيسر.', analogy: 'مثل باب يفتح للأمام بس — لو دفّيته من الجهة الثانية يتسكّر.'},
+    {title: 'رحلة الدم', body: '```steps\nالجسم → الأذين الأيمن\nالبطين الأيمن → الرئة (ياخذ أكسجين)\nالرئة → الأذين الأيسر\nالبطين الأيسر → الأبهر → كل الجسم\n```', analogy: 'دورة توصيل: تروح المحطة (الرئة) تعبّي، وترجع توزّع على البيوت (الجسم).'}
+  ],
+  connect: 'الغلاف يحمي → الغرف تستقبل وتضخ → الصمامات تمنع الرجوع → وكل هذا يخدم **رحلة الدم** بالترتيب. لو فهمت الرحلة، باقي المحاضرة تفاصيل عليها.',
+  glossary: [
+    {term: 'Pericardium — التامور', simple: 'الكيس اللي يغلّف القلب ويحميه.', kind: 'structure', image: true}, {term: 'Atrium — الأذين', simple: 'غرفة علوية تستقبل الدم.', kind: 'structure', image: true},
+    {term: 'Ventricle — البطين', simple: 'غرفة سفلية تضخ الدم للخارج.', kind: 'structure', image: true}, {term: 'Valve — الصمام', simple: 'باب يسمح للدم يمشي باتجاه واحد.', kind: 'structure', image: true},
+    {term: 'Septum — الحاجز', simple: 'الجدار اللي يفصل الجهة اليمنى عن اليسرى.', kind: 'structure', image: false}, {term: 'Aorta — الأبهر', simple: 'أكبر شريان، يطلع من البطين الأيسر للجسم.', kind: 'structure', image: true},
+    {term: 'Pulmonary circulation — الدورة الرئوية', simple: 'الطريق القصير: قلب ← رئة ← قلب.', kind: 'process', image: false}, {term: 'Murmur — النفخة', simple: 'صوت غريب يسمعه الطبيب لما الصمام ما يسكّر زين.', kind: 'clinical', image: false}
+  ],
+  ready: [
+    {q: 'أي غرفة تضخ الدم لكل الجسم؟', options: ['الأذين الأيمن', 'البطين الأيسر', 'البطين الأيمن', 'الأذين الأيسر'], answer: 1, why: 'البطين الأيسر هو الأقوى والأسمك لأنه يدفع الدم لأبعد مكان.'},
+    {q: 'وش وظيفة الصمام؟', options: ['يصنع الدم', 'يمنع رجوع الدم', 'يغلّف القلب', 'ينقل الأكسجين'], answer: 1, why: 'الصمام باب باتجاه واحد.'},
+    {q: 'الدم بعد الرئة يرجع إلى…', options: ['الأذين الأيسر', 'الأذين الأيمن', 'الأبهر', 'البطين الأيمن'], answer: 0, why: 'الأوردة الرئوية ترجّع الدم المؤكسج للأذين الأيسر.'}
+  ],
+  linked: []
+};
+Object.assign(AI, {
+  foundation(lec) {
+    return demoOr(lec, DEMO.foundation, async () => {
+      const sid = Subjects.idOf(lec);
+      const prior = Lib.list.filter(l => l.id !== lec.id && Subjects.idOf(l) === sid && l.cache && l.cache.foundation && l.cache.foundation.data).slice(0, 8)
+        .map(l => `- [${l.id}] «${l.title.slice(0, 60)}»: ${(l.cache.foundation.data.glossary || []).map(g => g.term).slice(0, 25).join('، ')}`).join('\n');
+      const o = await aiJSON(lec, `اكتب «التأسيس» لهذه المحاضرة: صفحة قصيرة جداً لشخص **ما عنده أي خلفية أبداً** في المادة، يقرأها في ٥–١٠ دقائق قبل المحاضرة، وبعدها يفهم المحاضرة بسرعة.
+- اشرح من الصفر كأنك تشرح لطفل ذكي: كل كلمة ومصطلح ومتطلب سابق، الصورة الكبيرة، ليش مهمة، وكيف الأجزاء مرتبطة. تقدر تطلع شوي عن المحاضرة إذا يساعد الفهم.
+- قصير وسهل التصفح: hook جملة تشويقية واحدة؛ bigPicture (Markdown، ٣–٦ أسطر)؛ why (سطرين)؛ prereqs ٢–٥ متطلبات سابقة بشرح بسيط جداً؛ sections ٣–٦ أقسام صغيرة (body ٢–٤ أسطر Markdown + analogy تشبيه يومي بسطر)؛ connect: كيف ترتبط الأجزاء (٢–٣ أسطر)؛ minutes وقت القراءة.
+- glossary: كل مصطلح في المحاضرة (حتى ٢٥) بمعنى بسيط بسطر واحد؛ kind واحد من structure/term/process/clinical؛ image=true للتراكيب التشريحية والأشياء المرئية.
+- في body استخدم رقائق الصور [[الاسم|english search query|anatomy]] للتراكيب التشريحية.
+- ready: ٣–٥ أسئلة اختيار من متعدد سهلة («أنت جاهز؟») مع answer رقم الخيار الصحيح (من 0) و why سطر.
+${prior ? `- هذه مصطلحات سبق شرحها في تأسيس محاضرات سابقة من نفس المادة — **لا تعيد شرحها**؛ إذا احتجتها اذكرها باختصار وضعها في linked (lectureId + terms):\n${prior}` : '- linked: [] (ما فيه محاضرات سابقة مؤسَّسة من نفس المادة).'}`, SCHEMA.foundation, x => Array.isArray(x.sections) && x.sections.length && Array.isArray(x.glossary), {temperature: 0.5});
+      o.prereqs = o.prereqs || []; o.ready = (o.ready || []).filter(q => q && q.q && Array.isArray(q.options) && q.options.length >= 2); o.linked = (o.linked || []).filter(x => x && Lib.list.some(l => l.id === x.lectureId));
+      return o;
+    });
+  },
+  rewrite(lec, md, style, custom, onChunk) {
+    if (useDemo(lec)) return Promise.reject(new AIError('إعادة الصياغة تحتاج مفتاح Gemini (مجاني) — في الوضع التجريبي المحتوى ثابت.', 'demo'));
+    const how = custom ? `بهذا الأسلوب الذي طلبه الطالب: «${custom}»` : RW.STYLES[style][1];
+    return geminiRequest({contents: [{role: 'user', parts: [{text: `أعد صياغة المحتوى التالي من محاضرة «${lec.title}» ${how}.
+- حافظ على كل المعلومات الصحيحة والمصطلحات المهمة (لا تخترع معلومات جديدة إلا إذا طلب الأطول والأعمق).
+- أبقِ رقائق الصور [[...|...|...]] كما هي إن وجدت، واكتب Markdown نظيفاً.
+- اكتب الناتج مباشرة بدون مقدمة مثل «إليك».
+
+---
+${String(md).slice(0, 24000)}`}]}], system: systemPrompt(), stream: true, onChunk, temperature: 0.7});
+  }
+});
+
+/* ---------------- أعد الصياغة: works on any markdown content block ---------------- */
+const RW = {
+  STYLES: {
+    simple: ['أبسط', 'بشكل أبسط بكثير: كلمات سهلة، جمل قصيرة، وتشبيه يومي'], short: ['أقصر', 'بشكل أقصر (نص الطول تقريباً) مع الاحتفاظ بالأهم'],
+    deep: ['أطول وأعمق', 'بشكل أطول وأعمق: تفاصيل أكثر، أمثلة، و«ليش» و«كيف»'], gulf: ['باللهجة', 'باللهجة الخليجية البسيطة كأنك صديق يشرح لصاحبه'],
+    points: ['نقاط', 'على شكل نقاط قصيرة مرتبة بعناوين صغيرة'], table: ['جدول', 'على شكل جدول Markdown منظم (مع سطر تمهيدي قصير)'],
+    story: ['قصة', 'على شكل قصة قصيرة ممتعة تشرح نفس المعلومات بالترتيب'], qa: ['أسئلة وأجوبة', 'على شكل أسئلة وأجوبة (س/ج) تغطي كل المعلومات']
+  },
+  st(lec, key) { lec.cache.rw = lec.cache.rw || {}; return lec.cache.rw[key] = lec.cache.rw[key] || {v: [], cur: 0}; },
+  // host: element holding the content; base(): original markdown; paint(md|null): draw a version (null = the original rendering)
+  attach(host, {lec, key, base, paint, label = 'المحتوى'}) {
+    if (!host || !lec) return; const S0 = this.st(lec, key);
+    const doPaint = paint || (md => { const t = md == null ? base() : md; host.innerHTML = host.classList.contains('md') ? renderMd(t) : mdBlock(t, 'lesson-md'); });
+    let bar = host.previousElementSibling; if (!bar || !bar.classList.contains('rw-bar')) { bar = document.createElement('div'); bar.className = 'rw-bar'; host.parentNode.insertBefore(bar, host); }
+    const draw = () => {
+      const n = S0.v.length, c = Math.min(S0.cur, n); const name = c ? (S0.v[c - 1].label || 'نسخة') : 'الأصلية';
+      bar.innerHTML = `${n ? `<div class="rw-ver" role="group" aria-label="نسخ ${esc(label)}"><button class="icon-btn sm" data-rv="-1" aria-label="النسخة السابقة" ${c ? '' : 'disabled'}>${icon('prev')}</button><span class="tiny" aria-live="polite">${esc(name)} · ${arNum(c + 1)}/${arNum(n + 1)}</span><button class="icon-btn sm" data-rv="1" aria-label="النسخة التالية" ${c < n ? '' : 'disabled'}>${icon('next')}</button></div>` : ''}<button class="btn btn-sm btn-ghost rw-btn" aria-haspopup="dialog">${icon('edit')} أعد الصياغة</button>`;
+      $$('[data-rv]', bar).forEach(b => b.onclick = () => { S0.cur = clamp(c + +b.dataset.rv, 0, n); saveLec(lec); show(); draw(); });
+      $('.rw-btn', bar).onclick = e => this.menu(e.currentTarget, s => run(s));
+    };
+    const show = () => { const c = Math.min(S0.cur, S0.v.length); doPaint(c ? S0.v[c - 1].md : null, !c); };
+    const run = async ({style, custom}) => {
+      const src = S0.cur && S0.v[S0.cur - 1] ? S0.v[S0.cur - 1].md : base(); const btn = $('.rw-btn', bar); if (btn) btn.disabled = true;
+      const lbl = custom ? custom.slice(0, 24) : this.STYLES[style][0];
+      host.setAttribute('aria-busy', 'true'); host.innerHTML = thinking(`نعيد الصياغة: ${esc(lbl)}…`) + '<div class="skel skel-line" style="width:88%"></div><div class="skel skel-line" style="width:70%"></div>';
+      const el = document.createElement('div'); el.className = 'md'; const p = makePainter(el); let st = false;
+      try {
+        const t = await AI.rewrite(lec, src, style, custom, f => { if (!host.isConnected) return; if (!st) { st = true; host.innerHTML = ''; host.appendChild(el); } p(f); });
+        S0.v.push({md: t, label: lbl, at: Date.now()}); if (S0.v.length > 12) S0.v.shift(); S0.cur = S0.v.length; await saveLec(lec); Activity.mark('tool');
+        if (host.isConnected) { show(); draw(); toast('هذي نسخة جديدة — الأصلية محفوظة، ترجع لها بالأسهم', 'ok', 2600); }
+      } catch (e) { if (host.isConnected) { show(); toast(e.message || 'ما قدرنا نعيد الصياغة', 'err', 4500); } }
+      finally { host.removeAttribute('aria-busy'); const b2 = $('.rw-btn', bar); if (b2) b2.disabled = false; }
+    };
+    draw(); if (S0.cur) show();
+  },
+  menu(anchor, cb) {
+    if (Pop.anchor === anchor && Pop.el) return Pop.close();
+    const inner = `<div class="rw-grid">${Object.entries(this.STYLES).map(([k, [l]]) => `<button class="chip" data-rs="${k}">${l}</button>`).join('')}</div>
+      <form class="rw-free"><label class="tiny muted" for="rw-t">أو اكتب كيف تبيه</label><div class="row" style="gap:6px;flex-wrap:nowrap"><input id="rw-t" class="input" maxlength="160" placeholder="اكتب كيف تبيه… مثلاً: كأني بالثانوي"><button class="btn btn-primary btn-sm" type="submit">صغها</button></div></form>`;
+    const bind = (el, close) => {
+      $$('[data-rs]', el).forEach(b => b.onclick = () => { close(); cb({style: b.dataset.rs}); });
+      $('.rw-free', el).onsubmit = e => { e.preventDefault(); const v = $('#rw-t', el).value.trim(); if (!v) return $('#rw-t', el).focus(); close(); cb({custom: v}); };
+    };
+    // phones: a calm sheet (keyboard-safe); wider screens: a small popover next to the button
+    if (matchMedia('(max-width:600px)').matches) { openModal({title: 'أعد الصياغة', icon: 'edit', cls: 'rw-pop', body: inner, onMount: (bg, close) => bind(bg, close)}); return; }
+    const el = Pop.open(anchor, `<div class="vp-body rw-pop" role="dialog" aria-label="أعد الصياغة"><div class="vp-t"><b>${icon('edit')} أعد الصياغة</b><span class="spacer"></span><button class="icon-btn vp-x" aria-label="إغلاق">${icon('x')}</button></div>${inner}</div>`);
+    $('.vp-x', el).onclick = () => Pop.close(); bind(el, () => Pop.close());
+  }
+};
+
+/* ---------------- التأسيس view ---------------- */
+TABS.foundation = {label: 'التأسيس', icon: 'layers', e: '🧱'};
+{ const learn = SECTIONS.find(s => s[0] === 'learn'); if (learn && !learn[3].includes('foundation')) learn[3].unshift('foundation'); }
+PREP_ITEMS.unshift(['foundation', '🧱', 'التأسيس', 'من الصفر تماماً — ٥–١٠ دقايق قبل المحاضرة']);
+Prep.where.foundation = 'foundation';
+{ const d0 = Prep.done.bind(Prep), m0 = Prep.make.bind(Prep);
+  Prep.done = (lec, k) => k === 'foundation' ? !!(lec.cache.foundation && lec.cache.foundation.data) : d0(lec, k);
+  Prep.make = async (lec, k) => { if (k !== 'foundation') return m0(lec, k); if (!(lec.cache.foundation && lec.cache.foundation.data)) lec.cache.foundation = {data: await AI.foundation(lec), at: Date.now()}; }; }
+const Found = {
+  pending: new Map(),
+  get(lec, force) {
+    if (!force && lec.cache.foundation && lec.cache.foundation.data) return Promise.resolve(lec.cache.foundation.data);
+    if (!this.pending.has(lec.id)) this.pending.set(lec.id, AI.foundation(lec).then(async d => { lec.cache.foundation = {data: d, at: Date.now()}; if (lec.cache.rw) delete lec.cache.rw.foundation; await saveLec(lec); return d; }).finally(() => this.pending.delete(lec.id)));
+    return this.pending.get(lec.id);
+  },
+  md(d) {
+    return [d.hook ? `> ${d.hook}` : '', '### الصورة الكبيرة', d.bigPicture, d.why ? `### ليش يهمك؟\n${d.why}` : '', (d.prereqs || []).length ? '### قبل ما نبدأ\n' + d.prereqs.map(p => `- **${p.name}**: ${p.simple}`).join('\n') : '',
+      ...(d.sections || []).map((s, i) => `### ${i + 1}. ${s.title}\n${s.body}${s.analogy ? `\n\n> 🏠 ${s.analogy}` : ''}`), d.connect ? `### كيف تترابط؟\n${d.connect}` : ''].filter(Boolean).join('\n\n');
+  },
+  body(d) {
+    return `${d.hook ? `<p class="fd-hook">${rich(d.hook)}</p>` : ''}
+      <section class="fd-sec fd-big"><h2>${icon('compass')} الصورة الكبيرة</h2>${mdBlock(d.bigPicture)}${d.why ? `<div class="fd-why"><b>ليش يهمك؟</b> ${rich(d.why)}</div>` : ''}</section>
+      ${(d.prereqs || []).length ? `<section class="fd-sec"><h2>${icon('key')} قبل ما نبدأ</h2><ul class="fd-pre">${d.prereqs.map(p => `<li><b>${esc(p.name)}</b><span>${rich(p.simple)}</span></li>`).join('')}</ul></section>` : ''}
+      ${(d.sections || []).map((s, i) => `<section class="fd-sec"><h2><span class="fd-n">${arNum(i + 1)}</span> ${esc(s.title)}</h2>${mdBlock(s.body)}${s.analogy ? `<div class="fd-ana" role="note"><span aria-hidden="true">🏠</span> ${rich(s.analogy)}</div>` : ''}</section>`).join('')}
+      ${d.connect ? `<section class="fd-sec"><h2>${icon('layers')} كيف تترابط؟</h2>${mdBlock(d.connect)}</section>` : ''}`;
+  },
+  gloss(d) {
+    const g = d.glossary || []; if (!g.length) return '';
+    return `<section class="card fd-gl" aria-labelledby="fd-gl-h"><h2 id="fd-gl-h">${icon('book')} مسرد مصغّر <span class="tiny muted">كل كلمة بمعنى بسيط</span></h2><div class="fd-legend tiny">${Object.entries(FD_KIND).map(([k, [l]]) => `<span class="fd-k fd-${k}">${l}</span>`).join('')}</div>
+      <dl class="fd-terms">${g.map(x => { const k = FD_KIND[x.kind] ? x.kind : 'term'; const en = String(x.term).split(/\s+[—–-]\s+/)[0]; return `<div class="fd-t fd-${k}"><dt>${x.image ? vtChip(x.term, en, FD_KIND[k][1]) : esc(x.term)}</dt><dd>${rich(x.simple)}</dd></div>`; }).join('')}</dl></section>`;
+  },
+  linked(d) {
+    const ls = (d.linked || []).map(x => [Lib.list.find(l => l.id === x.lectureId), x.terms || []]).filter(x => x[0]); if (!ls.length) return '';
+    return `<div class="card fd-link"><b>${icon('book')} سبق شرحه في محاضرات نفس المادة</b>${ls.map(([l, t]) => `<a class="fd-la" href="#/lec/${encodeURIComponent(l.id)}/foundation"><span>«${esc(l.title)}»</span><small class="muted">${esc(t.slice(0, 6).join('، '))}</small></a>`).join('')}</div>`;
+  },
+  ready(lec, d, box) {
+    const qs = d.ready || []; if (!qs.length) { box.innerHTML = ''; return; } const ans = {};
+    const draw = () => {
+      const n = Object.keys(ans).length, ok = qs.filter((q, i) => ans[i] === q.answer).length, done = n === qs.length;
+      box.innerHTML = `<section class="card fd-ready" aria-labelledby="fd-r-h"><h2 id="fd-r-h">${icon('check')} أنت جاهز؟ <span class="tiny muted">${arNum(qs.length)} أسئلة سريعة</span></h2>
+        ${qs.map((q, i) => `<div class="fd-q"><p class="q-text"><b>${arNum(i + 1)}.</b> ${rich(q.q)}</p><div class="fd-opts" role="group" aria-label="خيارات السؤال ${arNum(i + 1)}">${q.options.map((o, j) => { const a = ans[i]; const cls = a == null ? '' : j === q.answer ? 'right' : j === a ? 'wrong' : ''; return `<button class="opt ${cls}" data-q="${i}" data-o="${j}" ${a != null ? 'disabled' : ''}>${rich(o)}</button>`; }).join('')}</div>${ans[i] != null ? `<div class="small fd-why2 ${ans[i] === q.answer ? 'ok' : ''}">${ans[i] === q.answer ? '✓ صح' : '✗ لا'} — ${rich(q.why || '')}</div>` : ''}</div>`).join('')}
+        ${done ? `<div class="alert ${ok / qs.length >= .66 ? 'ok' : 'warn'} fd-res" role="status">${icon(ok / qs.length >= .66 ? 'check' : 'info')}<div style="flex:1"><b>${ok / qs.length >= .66 ? 'أنت جاهز ✨ — المحاضرة الحين بتكون أسهل بكثير' : 'قريب! راجع الأقسام اللي غلطت فيها بسرعة'}</b><div class="small">${arNum(ok)} من ${arNum(qs.length)} صح</div>
+          <div class="row" style="margin-top:10px"><button class="btn btn-primary btn-sm" data-a="fd-go">${icon('next')} يلا للمحاضرة</button><button class="btn btn-sm btn-ghost" data-a="fd-again">${icon('refresh')} أعد الأسئلة</button></div></div></div>` : ''}</section>`;
+      $$('[data-q]', box).forEach(b => b.onclick = () => { ans[+b.dataset.q] = +b.dataset.o; if (Object.keys(ans).length === qs.length) { lec.progress = lec.progress || {}; lec.progress.foundation = {score: qs.filter((q, i) => ans[i] === q.answer).length, of: qs.length, at: Date.now()}; saveLec(lec); Activity.mark('quiz'); } draw(); if (Object.keys(ans).length === qs.length) { const r = $('.fd-res', box); r && r.scrollIntoView({block: 'nearest', behavior: 'smooth'}); } });
+      const g = $('[data-a="fd-go"]', box); g && (g.onclick = () => go('overview'));
+      const a = $('[data-a="fd-again"]', box); a && (a.onclick = () => { for (const k in ans) delete ans[k]; draw(); });
+    };
+    draw();
+  }
+};
+VIEWS.foundation = async function () {
+  const lec = App.lec; lec.cache.fdSeen = true;
+  const has = () => !!(lec.cache.foundation && lec.cache.foundation.data);
+  const mins = d => d.minutes || Math.max(4, Math.min(12, Math.round(stripMd(Found.md(d)).split(/\s+/).length / 170)));
+  main().innerHTML = `<div class="fade-in fd-page" style="max-width:820px;margin:0 auto">${pageHead('التأسيس 🧱', 'من الصفر تماماً — اقرأه قبل المحاضرة وبتفهمها بسرعة', `<button class="btn btn-sm" id="fd-say" ${has() ? '' : 'hidden'}>${icon('volume')} استمع</button><button class="icon-btn" id="fd-regen" aria-label="إعادة توليد التأسيس" title="إعادة التوليد" ${has() ? '' : 'hidden'}>${icon('refresh')}</button>`)}
+    <div id="fd-wrap"></div></div>`;
+  const wrap = $('#fd-wrap');
+  const render = d => {
+    if (!isCurrent(lec, 'foundation')) return;
+    wrap.innerHTML = `<div class="fd-meta tiny muted">${icon('clock')} قراءة ~${arNum(mins(d))} دقايق · ${arNum((d.glossary || []).length)} مصطلح</div>${Found.linked(d)}<article class="card lesson-card fd-card"><div id="fd-body"></div></article>${Found.gloss(d)}<div id="fd-rd"></div>`;
+    $('#fd-say').hidden = false; $('#fd-regen').hidden = false;
+    const body = $('#fd-body');
+    RW.attach(body, {lec, key: 'foundation', label: 'التأسيس', base: () => Found.md(d), paint: (md, orig) => { body.innerHTML = orig ? Found.body(d) : mdBlock(md); }});
+    if (!(lec.cache.rw && lec.cache.rw.foundation && lec.cache.rw.foundation.cur)) body.innerHTML = Found.body(d);
+    Found.ready(lec, d, $('#fd-rd'));
+  };
+  const load = async force => {
+    if (has() && !force) return render(lec.cache.foundation.data);
+    wrap.innerHTML = `<div class="card">${thinking('نجهّز لك التأسيس من الصفر…')}<div class="skel skel-line" style="width:92%"></div><div class="skel skel-line" style="width:76%"></div><div class="skel skel-line" style="width:84%"></div><div class="skel skel-line" style="width:60%"></div></div>`;
+    try { const d = await Found.get(lec, force); Activity.mark('tool'); render(d); }
+    catch (e) { if (isCurrent(lec, 'foundation')) { wrap.innerHTML = errorCard(e); bindErrorCard(() => load(force), wrap); } }
+  };
+  $('#fd-say').onclick = e => has() && TTS.speak(Found.md(lec.cache.foundation.data), e.currentTarget);
+  $('#fd-regen').onclick = async () => { if (await confirmDialog('نولّد تأسيس جديد؟ النسخ المعاد صياغتها بتنحذف.', 'ولّد من جديد')) load(true); };
+  if (has() || useDemo(lec) || App.fdAuto) { App.fdAuto = false; return load(false); }
+  wrap.innerHTML = `<div class="card empty fd-empty"><div class="fd-ill" aria-hidden="true">🧱</div><h2>ما عندك أي خلفية؟ ابدأ من هنا</h2><p class="muted">صفحة قصيرة (٥–١٠ دقايق) تشرح كل كلمة ومصطلح من الصفر، وفي آخرها أسئلة «أنت جاهز؟».</p><button class="btn btn-primary" id="fd-make">${icon('sparkles')} جهّز التأسيس</button></div>`;
+  $('#fd-make').onclick = () => load(false);
+};
+// suggest التأسيس on first open of a new lecture (gentle, dismissible card on the overview)
+{ const ov0 = VIEWS.overview;
+  VIEWS.overview = async function (...a) {
+    const r = await ov0.apply(this, a); const lec = App.lec;
+    if (lec && isCurrent(lec, 'overview') && !lec.cache.fdSeen && !(lec.cache.foundation && lec.cache.foundation.data) && !$('#fd-sug')) {
+      const host = main().firstElementChild; if (host) { const c = document.createElement('div'); c.id = 'fd-sug'; c.className = 'card fd-sug fade-in'; c.setAttribute('role', 'note');
+        c.innerHTML = `<span class="fd-ill sm" aria-hidden="true">🧱</span><div style="flex:1;min-width:0"><b>جديد على الموضوع؟</b><div class="small muted">ابدأ بالتأسيس: ٥–١٠ دقايق من الصفر وبعدها المحاضرة أسهل.</div></div><button class="btn btn-primary btn-sm" id="fd-sug-go">ابدأ التأسيس</button><button class="icon-btn sm" id="fd-sug-x" aria-label="إخفاء الاقتراح">${icon('x')}</button>`;
+        host.insertBefore(c, host.children[1] || null);
+        $('#fd-sug-go').onclick = () => { App.fdAuto = true; go('foundation'); };
+        $('#fd-sug-x').onclick = () => { lec.cache.fdSeen = true; saveLec(lec); c.remove(); }; }
+    }
+    return r;
+  }; }
+
+/* ---------------- rewrite on the other generated pages ---------------- */
+{ const wrapView = (name, sel, key, getMd) => { const v0 = VIEWS[name]; VIEWS[name] = async function (...a) { const r = await v0.apply(this, a); RW.hook(sel, key, getMd, name); return r; }; };
+  RW.hook = (sel, keyFn, getMd, tab) => {
+    // attach once the content exists (it may still be streaming) — poll lightly, stop when the view changes
+    const lec = App.lec; let n = 0;
+    const tick = () => { if (!lec || !isCurrent(lec, tab)) return; const h = $(sel); const md = getMd(lec); if (h && md && !h.closest('[aria-busy="true"]')) { if (h.dataset.rw !== '1') { h.dataset.rw = '1'; RW.attach(h, {lec, key: typeof keyFn === 'function' ? keyFn(lec) : keyFn, base: () => getMd(lec)}); } return; } if (++n < 600) setTimeout(tick, 500); };
+    tick();
+  };
+  wrapView('cheat', '#ch-body', 'cheat', l => l.cache.cheat);
+  wrapView('tools', '#tl-md', l => 'tool:' + App.sub, l => l.cache.tools && typeof l.cache.tools[App.sub] === 'string' ? l.cache.tools[App.sub] : null);
+  wrapView('tutor', '#l-body', l => 'lesson:' + App.tutorIdx, l => { const L = l.cache.lessons && l.cache.lessons[App.tutorIdx]; return L && L.md; });
+  wrapView('zero', '#z-body', l => 'zero:' + App.zeroIdx, l => { const z = l.cache.zero; const c = z && z.chunks && z.chunks[App.zeroIdx]; return c && c.md; });
+}
+// Deep dives: add a rewrite bar under each finished panel body
+{ const dl0 = Deep.load.bind(Deep);
+  Deep.load = async function (panel, topic, tab) { const r = await dl0(panel, topic, tab); const lec = App.lec; const c = lec && lec.cache.deep && lec.cache.deep[topic]; const body = $('.dd-body', panel);
+    if (body && c && c[tab] && body.dataset.rw !== '1') { body.dataset.rw = '1'; RW.attach(body, {lec, key: `deep:${topic}:${tab}`, base: () => String(c[tab]).split(/\n?NEXT:/)[0].trim()}); } return r; }; }
+
+/* ---------------- «اسأل المساعد» from any selection ---------------- */
+delete SEL_ACTS.ask;
+SEL_ACTS.assist = ['', 'اسأل المساعد'];
+{ const o0 = SelBar.order.bind(SelBar), s0 = SelBar.show.bind(SelBar), a0 = SelBar.act.bind(SelBar);
+  SelBar.order = kind => { const [f, r] = o0(kind); return [['assist', ...f.filter(k => k !== 'assist')], r.filter(k => k !== 'assist')]; };
+  SelBar.show = () => { s0(); const b = SelBar.el && $('[data-sa="assist"]', SelBar.el); if (b) { b.classList.add('sb-assist'); b.innerHTML = `${MINI_FACE}<span>اسأل المساعد</span>`; } };
+  SelBar.act = k => { if (k !== 'assist') return a0(k); const text = SelBar.text, ctx = SelBar.ctx, lec = App.lec; SelBar.hide(); try { getSelection().removeAllRanges(); } catch {} Companion.askAbout(text, ctx, lec); }; }
+const ASK_SUG = ['اشرحها لي ببساطة', 'ليش هي مهمة؟', 'أعطني مثال من الحياة', 'كيف تجي في الاختبار؟', 'وش علاقتها بباقي المحاضرة؟'];
+Object.assign(Companion, {
+  askAbout(text, ctx, lec) {
+    const tab = App.tab ? (TABS[App.tab] || {}).label : '';
+    this.quote = {text: String(text).slice(0, 600), ctx: ctx && ctx !== text ? String(ctx).slice(0, 400) : '', lecId: lec && lec.id, lecTitle: lec ? lec.title : '', subject: lec ? (Subjects.get(Subjects.idOf(lec)) || {}).name || '' : '', where: tab || ''};
+    this.show();
+  },
+  drawQuote() {
+    const p = $('#bd-panel'); if (!p) return; $('.bdp-quote', p) && $('.bdp-quote', p).remove(); const q = this.quote; const chips = $('.bdp-chips', p);
+    if (!q) { chips && (chips.hidden = false); return; }
+    chips && (chips.hidden = true);
+    const el = document.createElement('div'); el.className = 'bdp-quote';
+    el.innerHTML = `<div class="bq-h tiny">${MINI_FACE}<b>عن النص اللي حددته</b>${q.lecTitle ? `<span class="muted"> · «${esc(q.lecTitle.slice(0, 40))}»</span>` : ''}<span class="spacer"></span><button class="icon-btn sm" data-bqx aria-label="إلغاء الاقتباس">${icon('x')}</button></div><blockquote>${esc(q.text.length > 220 ? q.text.slice(0, 220) + '…' : q.text)}</blockquote><div class="bdp-sq">${ASK_SUG.map(s => `<button class="chip" data-bsq="${esc(s)}">${s}</button>`).join('')}</div>`;
+    p.insertBefore(el, $('#bdp-form', p));
+    $('[data-bqx]', el).onclick = () => { this.quote = null; this.drawQuote(); $('#bdp-t') && $('#bdp-t').focus(); };
+    $$('[data-bsq]', el).forEach(b => b.onclick = () => { if (this.busy) return; this.send(b.dataset.bsq); });
+    const t = $('#bdp-t'); if (t) { t.placeholder = 'اكتب سؤالك عن هذا النص…'; setTimeout(() => t.focus(), 30); }
+  }
+});
+{ const sh0 = Companion.show.bind(Companion), se0 = Companion.send.bind(Companion), cx0 = Companion.context.bind(Companion);
+  Companion.show = function (...a) { const r = sh0(...a); this.drawQuote(); return r; };
+  Companion.send = function (text, quick) {
+    const q = this.quote;
+    if (q && !this.busy && !quick) { this.quote = null; this.drawQuote(); text = `> ${q.text.replace(/\n+/g, ' ')}\n\n${text}\n\n_(من ${q.where ? `«${q.where}» في ` : ''}محاضرة «${q.lecTitle}»${q.subject ? ` — مادة ${q.subject}` : ''})_`; this.lastQuote = q; }
+    return se0(text, quick);
+  };
+  Companion.context = async function () { const c = await cx0(); if (App.lec) c.currentLecture = {id: App.lec.id, title: App.lec.title.slice(0, 80), subjectId: Subjects.idOf(App.lec), openTab: App.tab}; if (this.lastQuote) c.selectedText = {text: this.lastQuote.text, around: this.lastQuote.ctx}; return c; }; }
+/* =====================================================================
+   Sidebar: compact · rail (icons only) · hidden · drag-to-resize · phone/portrait drawer
+   ===================================================================== */
+IP.sidebar = '<rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M15 4v16"/>';
+IP.menu = '<path d="M4 7h16M4 12h16M4 17h16"/>';
+const Side = {
+  MIN: 200, MAX: 340, DEF: 232, RAIL: 68,
+  st() { const s = Settings.get('side', null) || {}; return {mode: ['full', 'rail', 'hidden'].includes(s.mode) ? s.mode : 'full', w: clamp(+s.w || this.DEF, this.MIN, this.MAX), last: s.last === 'rail' ? 'rail' : 'full'}; },
+  save(p) { Settings.set('side', {...this.st(), ...p}); },
+  narrow: () => matchMedia('(max-width:900px)').matches,
+  apply() {
+    const s = this.st(), b = document.body, r = document.documentElement;
+    b.classList.toggle('sd-rail', s.mode === 'rail'); b.classList.toggle('sd-hidden', s.mode === 'hidden');
+    r.style.setProperty('--side-w', s.w + 'px');
+    const grip = $('#side-grip'); if (grip) { grip.setAttribute('aria-valuenow', s.w); grip.hidden = s.mode !== 'full'; }
+    const t = $('#sd-toggle'); if (t) { t.setAttribute('aria-label', s.mode === 'rail' ? 'وسّع القائمة الجانبية' : 'صغّر القائمة لأيقونات'); t.title = t.getAttribute('aria-label'); t.setAttribute('aria-pressed', s.mode === 'rail'); }
+    const o = $('#sd-open'); if (o) { const show = this.narrow() || s.mode === 'hidden'; o.hidden = !show; o.setAttribute('aria-expanded', b.classList.contains('sd-drawer')); }
+    this.tips();
+  },
+  // icon-only rail: every item keeps an accessible name + tooltip (hover / long-press shows the native title)
+  tips() {
+    const rail = document.body.classList.contains('sd-rail');
+    $$('#sidebar .nav-item').forEach(a => { const l = (($('span', a) || {}).textContent || '').trim(); const h = a.dataset.hint || ''; if (rail) { a.title = h ? `${l} — ${h}` : l; a.setAttribute('aria-label', l); } else { a.removeAttribute('title'); a.removeAttribute('aria-label'); } });
+  },
+  set(mode) { const s = this.st(); this.save({mode, last: mode === 'hidden' ? s.mode === 'hidden' ? s.last : s.mode : mode}); this.closeDrawer(); this.apply(); },
+  toggleRail() { this.set(this.st().mode === 'rail' ? 'full' : 'rail'); },
+  hide() { this.set('hidden'); toast('أخفينا القائمة — ترجعها من زر ☰ فوق', '', 2600); const o = $('#sd-open'); o && o.focus(); },
+  openBtn() {
+    if (this.narrow() || this.st().mode !== 'hidden') return this.drawer(!document.body.classList.contains('sd-drawer'));
+    this.set(this.st().last);
+  },
+  drawer(on) {
+    const b = document.body; b.classList.toggle('sd-drawer', on); let bd = $('#sd-backdrop');
+    if (on && !bd) { bd = document.createElement('div'); bd.id = 'sd-backdrop'; bd.onclick = () => this.closeDrawer(); document.body.appendChild(bd); }
+    if (!on && bd) bd.remove();
+    const sb = $('#sidebar'); if (sb) { if (on) { sb.setAttribute('role', 'dialog'); sb.setAttribute('aria-modal', 'true'); setTimeout(() => { const f = $('.nav-item.active', sb) || $('.nav-item', sb); f && f.focus(); }, 60); } else { sb.removeAttribute('role'); sb.removeAttribute('aria-modal'); } }
+    this.apply();
+  },
+  closeDrawer() { if (document.body.classList.contains('sd-drawer')) { this.drawer(false); const o = $('#sd-open'); o && !o.hidden && o.focus({preventScroll: true}); } },
+  mount() {
+    const sb = $('#sidebar'); if (!sb || $('#side-grip')) return;
+    const hd = document.createElement('div'); hd.className = 'sd-tools';
+    hd.innerHTML = `<button class="icon-btn sm" id="sd-toggle" aria-pressed="false">${icon('sidebar')}</button><button class="icon-btn sm" id="sd-hide" aria-label="إخفاء القائمة الجانبية" title="إخفاء القائمة">${icon('x')}</button>`;
+    sb.insertBefore(hd, sb.firstChild);
+    const g = document.createElement('div'); g.id = 'side-grip'; g.setAttribute('role', 'separator'); g.setAttribute('aria-orientation', 'vertical'); g.setAttribute('aria-label', 'اسحب لتغيير عرض القائمة');
+    g.setAttribute('aria-valuemin', this.MIN); g.setAttribute('aria-valuemax', this.MAX); g.tabIndex = 0; g.title = 'اسحب لتغيير العرض · دبل كليك يرجّعه'; sb.appendChild(g);
+    const ob = document.createElement('button'); ob.id = 'sd-open'; ob.className = 'icon-btn'; ob.setAttribute('aria-label', 'القائمة'); ob.setAttribute('aria-controls', 'sidebar'); ob.innerHTML = icon('menu');
+    const tb = $('#topbar'); tb && tb.insertBefore(ob, tb.firstChild);
+    $('#sd-toggle').onclick = () => this.toggleRail(); $('#sd-hide').onclick = () => this.hide(); ob.onclick = () => this.openBtn();
+    // drag-resize: pointer events + rAF writing one CSS variable (no layout reads during the drag except the cached edge)
+    let drag = null, raf = 0, pend = 0;
+    const rtl = () => getComputedStyle(sb).direction === 'rtl';
+    const write = () => { raf = 0; if (!drag) return; document.documentElement.style.setProperty('--side-w', pend + 'px'); g.setAttribute('aria-valuenow', Math.round(pend)); };
+    g.addEventListener('pointerdown', e => {
+      if (e.button > 0) return; e.preventDefault(); const r = sb.getBoundingClientRect();
+      drag = {edge: rtl() ? r.right : r.left, rtl: rtl(), id: e.pointerId, w0: r.width, moved: false}; try { g.setPointerCapture(e.pointerId); } catch {}
+      document.body.classList.add('sd-dragging');
+    });
+    g.addEventListener('pointermove', e => {
+      if (!drag || e.pointerId !== drag.id) return; const x = e.clientX; let w = drag.rtl ? drag.edge - x : x - drag.edge;
+      drag.moved = drag.moved || Math.abs(w - drag.w0) > 3; drag.raw = w; pend = clamp(w, this.MIN, this.MAX); if (!raf) raf = requestAnimationFrame(write);
+    });
+    const end = e => {
+      if (!drag || (e && e.pointerId !== drag.id)) return; const d = drag; drag = null; cancelAnimationFrame(raf); raf = 0; document.body.classList.remove('sd-dragging');
+      try { g.releasePointerCapture(d.id); } catch {}
+      if (!d.moved) return;
+      if (d.raw != null && d.raw < this.MIN - 70) { this.save({w: this.st().w}); this.set('rail'); toast('صارت القائمة أيقونات بس — اسحبها أو اضغط الزر عشان توسّعها', '', 2600); return; }
+      this.save({w: Math.round(pend)}); this.apply();
+    };
+    g.addEventListener('pointerup', end); g.addEventListener('pointercancel', end); g.addEventListener('lostpointercapture', end);
+    g.addEventListener('dblclick', () => { this.save({w: this.DEF}); this.apply(); });
+    g.addEventListener('keydown', e => {
+      const k = e.key; const s = this.st(); let w = s.w; const step = e.shiftKey ? 40 : 16;
+      if (k === 'ArrowLeft' || k === 'ArrowRight') { const grow = (k === 'ArrowLeft') === rtl(); w += grow ? step : -step; }
+      else if (k === 'Home') w = this.MIN; else if (k === 'End') w = this.MAX; else return;
+      e.preventDefault(); this.save({w: clamp(w, this.MIN, this.MAX)}); this.apply();
+    });
+    // the rail expands back when dragged outwards from its edge as well
+    sb.addEventListener('click', e => { if (e.target.closest('a.nav-item,[data-a]') && document.body.classList.contains('sd-drawer')) setTimeout(() => this.closeDrawer(), 0); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && document.body.classList.contains('sd-drawer')) { e.stopPropagation(); this.closeDrawer(); } if ((e.ctrlKey || e.metaKey) && e.key === '\\') { e.preventDefault(); this.toggleRail(); } }, true);
+    matchMedia('(max-width:900px)').addEventListener('change', () => { this.closeDrawer(); this.apply(); });
+    window.addEventListener('hashchange', () => this.closeDrawer());
+    this.apply();
+  }
+};
+{ const rc0 = renderChrome; renderChrome = function (...a) { const r = rc0.apply(this, a); Side.mount(); Side.tips(); return r; }; }
+/* =====================================================================
+   أذكار — a calm rotating remembrance beside the header clock
+   Fixed, well-known phrases only (no AI, no source attributions).
+   ===================================================================== */
+const ADHKAR = {
+  general: ['سبحان الله', 'الحمد لله', 'لا إله إلا الله', 'الله أكبر', 'سبحان الله وبحمده', 'سبحان الله العظيم', 'سبحان الله وبحمده، سبحان الله العظيم',
+    'سبحان الله، والحمد لله، ولا إله إلا الله، والله أكبر', 'لا حول ولا قوة إلا بالله', 'أستغفر الله', 'أستغفر الله وأتوب إليه', 'أستغفر الله العظيم الذي لا إله إلا هو الحي القيوم وأتوب إليه',
+    'اللهم صلِّ وسلِّم على نبينا محمد', 'اللهم صلِّ على محمد وعلى آل محمد', 'لا إله إلا الله وحده لا شريك له، له الملك وله الحمد، وهو على كل شيء قدير',
+    'لا إله إلا أنت سبحانك إني كنت من الظالمين', 'رب اغفر لي وتب عليّ إنك أنت التواب الرحيم', 'حسبنا الله ونعم الوكيل', 'اللهم إنك عفوٌّ تحب العفو فاعفُ عني',
+    'يا مقلّب القلوب ثبّت قلبي على دينك', 'اللهم أعنّي على ذكرك وشكرك وحسن عبادتك', 'ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار',
+    'اللهم إني أعوذ بك من الهم والحزن، والعجز والكسل', 'اللهم اهدني وسدّدني', 'اللهم آتِ نفسي تقواها، وزكّها أنت خير من زكّاها', 'اللهم إني أسألك الهدى والتقى والعفاف والغنى',
+    'رب ارحمهما كما ربياني صغيرا', 'ربنا اغفر لي ولوالديّ وللمؤمنين يوم يقوم الحساب', 'سبحانك اللهم وبحمدك، أشهد أن لا إله إلا أنت، أستغفرك وأتوب إليك', 'ما شاء الله، لا قوة إلا بالله',
+    'الحمد لله على كل حال', 'توكلت على الله', 'اللهم إني أسألك العفو والعافية في الدنيا والآخرة', 'رب إني لما أنزلت إليّ من خير فقير',
+    'ربنا ظلمنا أنفسنا وإن لم تغفر لنا وترحمنا لنكونن من الخاسرين', 'ربّ أوزعني أن أشكر نعمتك التي أنعمت عليّ', 'اللهم أصلح لي ديني الذي هو عصمة أمري', 'اللهم إني أسألك الجنة وأعوذ بك من النار',
+    'ربنا لا تزغ قلوبنا بعد إذ هديتنا وهب لنا من لدنك رحمة', 'ربنا تقبّل منا إنك أنت السميع العليم', 'رب اجعلني مقيم الصلاة ومن ذريتي', 'يا حيّ يا قيوم برحمتك أستغيث',
+    'اللهم بارك لنا فيما رزقتنا', 'سبحان الله وبحمده عدد خلقه ورضا نفسه وزنة عرشه ومداد كلماته', 'لا إله إلا الله محمد رسول الله ﷺ', 'اللهم اغفر لي وارحمني واهدني وعافني وارزقني'],
+  study: ['رب زدني علما', 'اللهم لا سهل إلا ما جعلته سهلا، وأنت تجعل الحزن إذا شئت سهلا', 'اللهم انفعني بما علمتني، وعلّمني ما ينفعني، وزدني علما',
+    'رب اشرح لي صدري ويسّر لي أمري', 'واحلل عقدة من لساني يفقهوا قولي', 'اللهم إني أسألك علما نافعا', 'اللهم إني أعوذ بك من علم لا ينفع', 'اللهم إني أعوذ بك من العجز والكسل'],
+  morning: ['أصبحنا وأصبح الملك لله، والحمد لله', 'اللهم بك أصبحنا، وبك أمسينا، وبك نحيا، وبك نموت، وإليك النشور', 'اللهم إني أسألك علما نافعا، ورزقا طيبا، وعملا متقبلا',
+    'بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم', 'رضيت بالله ربا، وبالإسلام دينا، وبمحمد ﷺ نبيا', 'حسبي الله لا إله إلا هو، عليه توكلت وهو رب العرش العظيم',
+    'يا حي يا قيوم برحمتك أستغيث، أصلح لي شأني كله، ولا تكلني إلى نفسي طرفة عين', 'اللهم عافني في بدني، اللهم عافني في سمعي، اللهم عافني في بصري'],
+  evening: ['أمسينا وأمسى الملك لله، والحمد لله', 'اللهم بك أمسينا، وبك أصبحنا، وبك نحيا، وبك نموت، وإليك المصير', 'أعوذ بكلمات الله التامات من شر ما خلق',
+    'بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم', 'رضيت بالله ربا، وبالإسلام دينا، وبمحمد ﷺ نبيا', 'حسبي الله لا إله إلا هو، عليه توكلت وهو رب العرش العظيم',
+    'يا حي يا قيوم برحمتك أستغيث، أصلح لي شأني كله، ولا تكلني إلى نفسي طرفة عين', 'اللهم عافني في بدني، اللهم عافني في سمعي، اللهم عافني في بصري']
+};
+const Adhkar = {
+  t: null, i: -1, paused: false, bag: [], hover: false,
+  period(h = new Date().getHours()) { return h >= 4 && h < 11 ? 'morning' : h >= 15 && h < 21 ? 'evening' : null; },
+  pool() { const p = this.period(); return [...ADHKAR.general, ...ADHKAR.study, ...(p ? [...ADHKAR[p], ...ADHKAR[p]] : [])]; },
+  // shuffled bag: every phrase appears once before any repeats; never the same one twice in a row
+  pick() {
+    if (!this.bag.length) { const p = [...new Set(this.pool())]; for (let k = p.length - 1; k > 0; k--) { const j = Math.floor(Math.random() * (k + 1)); [p[k], p[j]] = [p[j], p[k]]; } if (p[0] === this.cur && p.length > 1) p.push(p.shift()); this.bag = p; }
+    // morning/evening phrases come early in their time window
+    const per = this.period(); if (per) { const k = this.bag.findIndex(x => ADHKAR[per].includes(x)); if (k > 0 && Math.random() < .35) this.bag.unshift(this.bag.splice(k, 1)[0]); }
+    return this.bag.shift();
+  },
+  on: () => Settings.get('adhkar', true) !== false,
+  mount() {
+    let el = $('#adhkar'); const ck = $('#clock');
+    if (!this.on()) { el && el.remove(); clearTimeout(this.t); return; }
+    if (!ck) return;
+    if (!el) {
+      el = document.createElement('button'); el.id = 'adhkar'; el.className = 'adhkar'; el.type = 'button';
+      el.innerHTML = `<svg class="ad-i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4.6" r="1.6"/><circle cx="17.2" cy="6.8" r="1.6"/><circle cx="19.4" cy="12" r="1.6"/><circle cx="17.2" cy="17.2" r="1.6"/><circle cx="12" cy="19.4" r="1.6"/><circle cx="6.8" cy="17.2" r="1.6"/><circle cx="4.6" cy="12" r="1.6"/><circle cx="6.8" cy="6.8" r="1.6"/></svg><span class="ad-t" aria-hidden="true"></span><span class="ad-p" aria-hidden="true" hidden>⏸</span>`;
+      ck.parentNode.insertBefore(el, ck);
+      let lp = null, longed = false;
+      el.addEventListener('pointerdown', () => { longed = false; clearTimeout(lp); lp = setTimeout(() => { longed = true; this.togglePause(); }, 550); });
+      ['pointerup', 'pointerleave', 'pointercancel'].forEach(k => el.addEventListener(k, () => clearTimeout(lp)));
+      el.addEventListener('click', e => { if (longed) { longed = false; return; } if (matchMedia('(max-width:600px)').matches) return this.peek(); this.next(true); });
+      el.addEventListener('dblclick', e => { e.preventDefault(); this.togglePause(); });
+      el.addEventListener('keydown', e => { if (e.key === ' ' && e.shiftKey) { e.preventDefault(); this.togglePause(); } });
+      el.addEventListener('mouseenter', () => this.hover = true); el.addEventListener('mouseleave', () => this.hover = false);
+      document.addEventListener('visibilitychange', () => { if (!document.hidden) this.schedule(); });
+    }
+    if (!this.cur) this.show(this.pick(), false); this.schedule();
+  },
+  label() { return `ذكر: ${this.cur}. ${this.paused ? 'متوقف — اضغط مطوّلاً للمتابعة' : 'اضغط للذكر التالي، واضغط مطوّلاً للإيقاف'}`; },
+  show(text, anim = true) {
+    const el = $('#adhkar'); if (!el) return; const t = $('.ad-t', el); this.cur = text;
+    const put = () => { t.textContent = text; el.setAttribute('aria-label', this.label()); el.title = text; };
+    if (!anim || matchMedia('(prefers-reduced-motion: reduce)').matches) return put();
+    t.classList.add('out'); setTimeout(() => { put(); t.classList.remove('out'); }, 320);
+  },
+  next(manual) { this.show(this.pick()); this.schedule(); if (manual) Settings.set('adhkarTaps', (Settings.get('adhkarTaps', 0) || 0) + 1); },
+  schedule() { clearTimeout(this.t); if (!this.on()) return; this.t = setTimeout(() => { if (!this.paused && !this.hover && !document.hidden) this.show(this.pick()); this.schedule(); }, 30000 + Math.random() * 30000); },
+  togglePause() { this.paused = !this.paused; const el = $('#adhkar'); if (!el) return; el.classList.toggle('paused', this.paused); $('.ad-p', el).hidden = !this.paused; el.setAttribute('aria-label', this.label()); toast(this.paused ? 'وقّفنا تغيّر الأذكار — اضغط مطوّلاً عشان يكمل' : 'رجع يتغيّر بهدوء', '', 1800); },
+  // phones: compact icon; tap shows the current phrase in a small bubble
+  peek() {
+    const el = $('#adhkar'); let b = $('#ad-peek'); if (b) { b.remove(); return this.next(true); }
+    b = document.createElement('div'); b.id = 'ad-peek'; b.className = 'ad-peek'; b.setAttribute('role', 'status'); b.textContent = this.cur; document.body.appendChild(b);
+    const r = el.getBoundingClientRect(); b.style.top = (r.bottom + 6) + 'px';
+    clearTimeout(this.pt); this.pt = setTimeout(() => { b.remove(); }, 6000); b.onclick = () => b.remove();
+  }
+};
+{ const rc1 = renderChrome; renderChrome = function (...a) { const r = rc1.apply(this, a); Adhkar.mount(); return r; }; }
+/* =====================================================================
+   First run for total beginners: try-the-demo first, then an illustrated
+   5-step guide to a free Gemini key (folded under «عندي مفتاح / أبي مفتاح»).
+   ===================================================================== */
+const ONB_MOCK = {
+  // clean illustrations of the AI Studio screens (drawn here — no Google images)
+  frame: (inner, url = 'aistudio.google.com/apikey') => `<svg class="onb-mock" viewBox="0 0 320 190" role="img" aria-hidden="true"><rect x="1" y="1" width="318" height="188" rx="14" fill="#fff" stroke="#d9dce3"/><rect x="1" y="1" width="318" height="30" rx="14" fill="#f1f3f6"/><rect x="1" y="20" width="318" height="11" fill="#f1f3f6"/><circle cx="16" cy="16" r="4" fill="#ff5f57"/><circle cx="29" cy="16" r="4" fill="#febc2e"/><circle cx="42" cy="16" r="4" fill="#28c840"/><rect x="58" y="8" width="204" height="16" rx="8" fill="#fff" stroke="#e2e5ea"/><text x="160" y="20" text-anchor="middle" font-size="9" fill="#444" font-family="system-ui,sans-serif" direction="ltr">🔒 ${url}</text>${inner}</svg>`,
+  open() { return this.frame(`<g font-family="system-ui,sans-serif" direction="ltr"><text x="20" y="58" font-size="12" font-weight="700" fill="#1f1f1f">Google AI Studio</text><rect x="20" y="70" width="180" height="8" rx="4" fill="#e8eaed"/><rect x="20" y="86" width="140" height="8" rx="4" fill="#e8eaed"/><rect x="20" y="102" width="160" height="8" rx="4" fill="#e8eaed"/><rect x="214" y="64" width="86" height="96" rx="10" fill="#eef3fe"/><path d="M240 112l10 10 22-26" stroke="#1a73e8" stroke-width="5" fill="none" stroke-linecap="round"/></g><rect class="onb-hl" x="55" y="5" width="210" height="22" rx="11"/>`); },
+  signin() { return this.frame(`<g font-family="system-ui,sans-serif" direction="ltr"><text x="160" y="58" text-anchor="middle" font-size="13" font-weight="700" fill="#1f1f1f">Sign in</text><text x="160" y="74" text-anchor="middle" font-size="9" fill="#5f6368">with your Google Account</text><rect x="70" y="86" width="180" height="26" rx="6" fill="#fff" stroke="#9aa0a6"/><text x="80" y="103" font-size="10" fill="#5f6368">you@gmail.com</text><rect x="196" y="128" width="54" height="24" rx="12" fill="#1a73e8"/><text x="223" y="144" text-anchor="middle" font-size="10" fill="#fff" font-weight="700">Next</text></g><rect class="onb-hl" x="192" y="124" width="62" height="32" rx="16"/>`, 'accounts.google.com'); },
+  create() { return this.frame(`<g font-family="system-ui,sans-serif" direction="ltr"><text x="20" y="56" font-size="12" font-weight="700" fill="#1f1f1f">API Keys</text><rect x="20" y="66" width="200" height="8" rx="4" fill="#e8eaed"/><rect x="188" y="88" width="112" height="28" rx="14" fill="#1a73e8"/><text x="244" y="106" text-anchor="middle" font-size="10.5" fill="#fff" font-weight="700">Create API key</text><rect x="20" y="130" width="280" height="40" rx="8" fill="#f8f9fa" stroke="#e8eaed"/><text x="32" y="154" font-size="9" fill="#80868b">No API keys yet</text></g><rect class="onb-hl" x="183" y="83" width="122" height="38" rx="19"/>`); },
+  copy() { return this.frame(`<rect x="0" y="31" width="320" height="159" fill="rgba(0,0,0,.28)"/><g font-family="system-ui,sans-serif" direction="ltr"><rect x="40" y="52" width="240" height="118" rx="12" fill="#fff"/><text x="56" y="76" font-size="11" font-weight="700" fill="#1f1f1f">API key generated</text><rect x="56" y="90" width="176" height="26" rx="6" fill="#f1f3f4"/><text x="64" y="107" font-size="10" fill="#3c4043" font-family="ui-monospace,monospace">AIzaSy••••••••••••••</text><rect x="238" y="90" width="28" height="26" rx="6" fill="#e8f0fe"/><rect x="246" y="97" width="9" height="11" rx="2" fill="none" stroke="#1a73e8" stroke-width="1.6"/><rect x="249" y="94" width="9" height="11" rx="2" fill="#e8f0fe" stroke="#1a73e8" stroke-width="1.6"/><text x="252" y="130" text-anchor="middle" font-size="8.5" fill="#1a73e8" font-weight="700">Copy</text><rect x="214" y="144" width="52" height="18" rx="9" fill="#1a73e8"/><text x="240" y="156" text-anchor="middle" font-size="8.5" fill="#fff">Done</text></g><rect class="onb-hl" x="233" y="85" width="38" height="50" rx="10"/>`); },
+  paste() { return `<svg class="onb-mock" viewBox="0 0 320 120" role="img" aria-hidden="true"><rect x="1" y="1" width="318" height="118" rx="14" fill="var(--surface-2)" stroke="var(--border)"/><rect x="24" y="40" width="200" height="40" rx="10" fill="var(--surface)" stroke="var(--border)"/><text x="40" y="65" font-size="12" fill="var(--muted)" font-family="ui-monospace,monospace" direction="ltr">AIza…</text><rect x="234" y="40" width="62" height="40" rx="10" fill="var(--primary)"/><text x="265" y="65" text-anchor="middle" font-size="12" fill="#fff" font-family="system-ui,sans-serif">الصق</text><rect class="onb-hl" x="229" y="35" width="72" height="50" rx="14"/></svg>`; }
+};
+const ONB_SLIDES = [
+  ['📚', 'ارفع محاضرتك… وذاكِر يشرحها لك', 'PDF أو بوربوينت أو صور — يشرحها خطوة خطوة، من الصفر، بكلام بسيط.'],
+  ['🎯', 'يختبرك ويذكّرك قبل ما تنسى', 'أسئلة وكروت سريعة، ويرجّعها لك بالوقت الصح عشان تثبت.'],
+  ['🗓️', 'ويرتّب وقتك', 'مواعيد اختباراتك، مؤقت تركيز، ورفيق صغير يتابع معك.']
+];
+const KEY_STEPS = [
+  {t: 'افتح Google AI Studio', d: 'اضغط الزر — بتنفتح صفحة Google في تبويب جديد. خلّ ذاكِر مفتوح هنا.', m: 'open'},
+  {t: 'سجّل دخولك بحساب Gmail', d: 'نفس حساب جيميل اللي عندك. ما يحتاج بطاقة ولا دفع.', m: 'signin'},
+  {t: 'اضغط «Create API key»', d: 'الزر الأزرق. لو سألك عن مشروع (project): اختر «Create project» أو بيسوي لك واحد تلقائياً.', m: 'create'},
+  {t: 'اضغط «Copy» (نسخ)', d: 'يطلع لك مفتاح طويل — اضغط زر النسخ جنبه.', m: 'copy'},
+  {t: 'ارجع هنا والصقه', d: 'اضغط «الصق» وبنتأكد إنه شغال على طول.', m: 'paste'}
+];
+const ONB_SAFE = `<div class="onb-trust">${icon('lock')} مفتاحك ينحفظ بجهازك بس — ما نشوفه ولا نخزّنه</div>
+  <details class="onb-why"><summary>ليش هذا آمن؟</summary><ul>
+    <li>المفتاح <b>مجاني</b> ومن حساب Google حقك أنت.</li>
+    <li>ينحفظ <b>داخل متصفحك على جهازك فقط</b>، وما يُرسل لنا ولا لأي خادم — إلا Google نفسها عشان تولّد لك الشرح.</li>
+    <li>الموقع <b>ما فيه حسابات ولا كلمات مرور ولا قاعدة بيانات</b>؛ ما نقدر نشوف محاضراتك ولا مفتاحك.</li>
+    <li>المفتاح <b>ما يقدر يدخل على Gmail أو صورك أو حسابك</b> — يسمح بس باستخدام خدمة Gemini.</li>
+    <li>تقدر تحذفه أي وقت من AI Studio، أو من الإعدادات هنا.</li>
+    <li>لا تعطي مفتاحك لأحد.</li></ul></details>`;
+const ONB_FAQ = `<details class="onb-faq"><summary>مشاكل شائعة</summary><dl>
+  <dt>يقول «المفتاح غير مكتمل»</dt><dd>غالباً ما انتسخ كامل. ارجع لـ AI Studio واضغط زر النسخ نفسه (مو تحديد بالإصبع). المفتاح طويل وعادةً يبدأ بـ AIza.</dd>
+  <dt>يقول «خلصت الحصة اليومية»</dt><dd>المجاني له حد يومي. ذاكِر يبدّل لنموذج ثاني تلقائياً، ولو خلص الكل يرجع يشتغل بكرة.</dd>
+  <dt>النسخ واللصق بالآيباد</dt><dd>بعد ما تنسخ، ارجع لهذي الصفحة واضغط «الصق». لو ما اشتغل: اضغط مطوّل داخل الخانة واختر «لصق».</dd>
+  <dt>ما يطلع لي زر «Create API key»</dt><dd>تأكد إنك مسجّل دخول. بعض حسابات المدارس أو اللي أعمارهم أقل من ١٨ ما تسمح — جرّب جيميل شخصي.</dd></dl></details>`;
+let onbClose = null;
+function showOnboarding(force = false, after, start) {
+  if (onboardingOpen || $('.modal-bg')) { if (!force) return; }
+  if (onboardingOpen) return; onboardingOpen = true;
+  const st = {view: start || (hasKey() ? 'key' : 'welcome'), slide: 0, step: start === 'key' || (!start && hasKey()) ? 4 : 0};
+  openModal({title: 'أهلاً بك في ذاكِر', cls: 'onb onb2', dismissable: true, body: '<div id="onb-root"></div>',
+    onClose: () => { onboardingOpen = false; onbClose = null; Settings.set('onboarded', true); },
+    onMount: (bg, close) => {
+      onbClose = close; const root = $('#onb-root', bg);
+      const draw = () => {
+        if (st.view === 'welcome') {
+          const s = ONB_SLIDES[st.slide];
+          root.innerHTML = `<div class="onb-hero2"><div class="onb-logo">${logo()}</div><div class="onb-slide" aria-live="polite"><div class="onb-emo" aria-hidden="true">${s[0]}</div><h2 class="onb-h">${s[1]}</h2><p>${s[2]}</p></div>
+            <div class="onb-dots" role="tablist" aria-label="الشاشات">${ONB_SLIDES.map((_, i) => `<button role="tab" aria-selected="${i === st.slide}" aria-label="الشاشة ${arNum(i + 1)}" data-sl="${i}" class="${i === st.slide ? 'on' : ''}"></button>`).join('')}</div></div>
+            <div class="onb-cta"><button class="btn btn-primary btn-lg onb-big" id="onb-demo">${icon('play')} تجربة بدون مفتاح — جرّب محاضرة القلب الحين</button>
+            <div class="onb-row"><button class="btn btn-ghost" id="onb-key-go">${icon('key')} عندي مفتاح / أبي أجهّز مفتاح مجاني</button>${st.slide < ONB_SLIDES.length - 1 ? `<button class="btn btn-ghost" id="onb-next">التالي ${icon('next')}</button>` : ''}</div></div>`;
+          $('#onb-demo', root).onclick = () => { close(); startDemo(); };
+          $('#onb-key-go', root).onclick = () => { st.view = 'key'; st.step = 0; draw(); };
+          const nx = $('#onb-next', root); nx && (nx.onclick = () => { st.slide++; draw(); });
+          $$('[data-sl]', root).forEach(b => b.onclick = () => { st.slide = +b.dataset.sl; draw(); });
+          let x0 = null; root.onpointerdown = e => x0 = e.clientX; root.onpointerup = e => { if (x0 == null) return; const dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 50) { st.slide = clamp(st.slide + (dx > 0 ? 1 : -1), 0, ONB_SLIDES.length - 1); draw(); } };
+          return;
+        }
+        if (st.view === 'done') {
+          root.innerHTML = `<div class="onb-done"><div class="onb-emo" aria-hidden="true">🎉</div><h2 class="onb-h">جاهز! المفتاح شغال ✅</h2><p class="muted">الحين ارفع محاضرتك، أو خذ جولة سريعة تعرّفك على المكان.</p>
+            <div class="onb-cta"><button class="btn btn-primary btn-lg onb-big" id="onb-up">${icon('upload')} ارفع أول محاضرة</button><button class="btn btn-ghost" id="onb-tour">${icon('compass')} خذ جولة سريعة</button></div></div>`;
+          $('#onb-up', root).onclick = () => { close(); go('#/'); setTimeout(() => { const f = $('#file-input'); f && f.click(); }, 120); after && after(); };
+          $('#onb-tour', root).onclick = () => { close(); if (typeof Tour !== 'undefined') Tour.start(); else startDemo(); };
+          root.onpointerdown = root.onpointerup = null; return;
+        }
+        root.onpointerdown = root.onpointerup = null;
+        const k = KEY_STEPS[st.step], last = st.step === KEY_STEPS.length - 1;
+        root.innerHTML = `<div class="onb-key"><div class="onb-kh"><button class="icon-btn sm" id="onb-back" aria-label="رجوع">${icon('prev')}</button><div class="onb-prog" aria-label="خطوة ${arNum(st.step + 1)} من ${arNum(KEY_STEPS.length)}"><b>مفتاح مجاني من Google</b><span class="tiny muted">خطوة ${arNum(st.step + 1)} من ${arNum(KEY_STEPS.length)}</span><div class="onb-bar"><i style="width:${(st.step + 1) / KEY_STEPS.length * 100}%"></i></div></div></div>
+          <h2 class="onb-h sm"><span class="onb-n">${arNum(st.step + 1)}</span> ${k.t}</h2><p class="onb-d">${k.d}</p>
+          <div class="onb-mockw">${ONB_MOCK[k.m]()}</div>
+          ${st.step === 0 ? `<a class="btn btn-primary btn-lg onb-big" id="onb-open" href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">${icon('globe')} افتح Google AI Studio</a>` : ''}
+          ${last ? `<div class="onb-paste"><label class="sr-only" for="ob-key">مفتاح Gemini</label><input class="input ltr" id="ob-key" type="password" placeholder="الصق المفتاح هنا" autocomplete="off" autocapitalize="off" spellcheck="false" dir="ltr"><button class="btn" id="ob-paste">${icon('copy')} الصق</button><button class="icon-btn" id="ob-eye" aria-label="إظهار المفتاح">${icon('eye')}</button></div>
+            <div class="small onb-msg" id="ob-msg" role="status" aria-live="polite"></div><button class="btn btn-primary btn-lg onb-big" id="ob-save">${icon('check')} تأكّد وابدأ</button>` : ''}
+          ${ONB_SAFE}${last ? ONB_FAQ : ''}
+          ${!last ? `<div class="onb-cta"><button class="btn ${st.step === 0 ? '' : 'btn-primary btn-lg onb-big'}" id="onb-next2">${st.step === 0 ? 'فتحتها — التالي' : 'سويتها — التالي'} ${icon('next')}</button></div>` : ''}</div>`;
+        $('#onb-back', root).onclick = () => { if (st.step) st.step--; else st.view = 'welcome'; draw(); };
+        const n2 = $('#onb-next2', root); n2 && (n2.onclick = () => { st.step++; draw(); });
+        const op = $('#onb-open', root); op && op.addEventListener('click', () => setTimeout(() => { st.step = 1; draw(); }, 400));
+        if (last) bindKey(root);
+        const h = $('.onb-h', root); h && h.setAttribute('tabindex', '-1');
+      };
+      const bindKey = root => {
+        const inp = $('#ob-key', root), msg = $('#ob-msg', root);
+        const say = (t, cls = '') => { msg.className = 'small onb-msg ' + cls; msg.innerHTML = t; };
+        $('#ob-eye', root).onclick = () => { inp.type = inp.type === 'password' ? 'text' : 'password'; };
+        $('#ob-paste', root).onclick = async () => {
+          try { if (!navigator.clipboard || !navigator.clipboard.readText) throw 0; const t = (await navigator.clipboard.readText() || '').trim(); if (!t) throw 0; inp.value = t; check(); }
+          catch { inp.focus(); say('اضغط مطوّل داخل الخانة واختر «لصق» 👆'); }
+        };
+        let timer = null; inp.oninput = () => { clearTimeout(timer); const v = inp.value.trim(); if (v.length >= 30) timer = setTimeout(check, 450); else if (v) say(''); };
+        inp.onkeydown = e => { if (e.key === 'Enter') check(); };
+        $('#ob-save', root).onclick = () => check();
+        let busy = false;
+        const check = async () => {
+          const k = inp.value.replace(/\s+/g, '').trim(); inp.value = k; if (busy) return;
+          if (!/^[A-Za-z0-9_.\-]{20,}$/.test(k)) return say('المفتاح غير مكتمل — ارجع وانسخه بزر النسخ، وتأكد ما فيه مسافات', 'bad');
+          busy = true; say('<span class="spin" style="width:14px;height:14px"></span> نتأكد من المفتاح مع Google…');
+          try { const list = await fetchModels(k, true); Settings.set('apiKey', k); Settings.set('onboarded', true); say(`المفتاح شغال ✅ — ${arNum(list.length)} نموذج متاح`, 'good'); renderChrome(); if (App.tab === 'home' && typeof renderHome === 'function') renderHome(); setTimeout(() => { st.view = 'done'; draw(); }, 700); }
+          catch (e) {
+            if (e.code === 'network') { Settings.set('apiKey', k); Settings.set('onboarded', true); say('حفظنا المفتاح، بس ما قدرنا نتأكد الحين (الإنترنت). بنجرّبه أول ما تستخدمه.', 'warn'); setTimeout(() => { st.view = 'done'; draw(); }, 1200); }
+            else if (e.code === 'quota') { Settings.set('apiKey', k); say('المفتاح صحيح 👍 بس الحصة اليومية خلصت — يرجع يشتغل بكرة، وذاكِر يبدّل النماذج تلقائياً.', 'warn'); }
+            else say(`ما اشتغل ❌ — ${esc(e.message)}`, 'bad');
+          } finally { busy = false; }
+        };
+      };
+      draw();
+    }});
+}
+// re-open from the companion (no key yet) and from Settings («شرح البداية»)
+function openStartGuide() { showOnboarding(true, null, 'welcome'); }
 /* =====================================================================
    Boot
    ===================================================================== */
